@@ -6,6 +6,18 @@ var tab_utils = require("sdk/tabs/utils");
 var self = require("sdk/self");
 var { viewFor } = require("sdk/view/core");
 
+var cm = require("sdk/context-menu");
+
+cm.Item({
+  label: "Create JUnit Test",
+  image: self.data.url("icon.png"),
+  context: cm.URLContext(/.*.contest.atcoder.jp\/tasks\/.*/),
+  contentScriptFile: [self.data.url("jquery-2.1.4.min.js"), self.data.url("ac-unit-test.js")],
+  onMessage: function(code){
+    clipboard.set(code);
+  }
+});
+
 var button = buttons.ActionButton({
   id: "mozilla-link",
   label: "Visit Mozilla",
@@ -21,8 +33,11 @@ function handleClick(state) {
   tabs.open("http://abc023.contest.atcoder.jp/assignments");
 }
 
+
+
 pageMod.PageMod({
   include: /.*.contest.atcoder.jp\/tasks\/.*/,
+  contentScriptWhen: "ready",
   contentScriptFile: [self.data.url("jquery-2.1.4.min.js"), self.data.url("ac-unit-test.js")],
   onAttach: function(worker) {
     var lowLevelTab = viewFor(worker.tab);

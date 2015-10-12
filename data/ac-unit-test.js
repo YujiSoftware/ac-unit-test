@@ -1,4 +1,4 @@
-self.port.on("create", function(){
+self.on("click", function(){
   // 問題全体を取得
   var children = $("#task-statement").find("#task-statement").children();
 
@@ -31,7 +31,7 @@ self.port.on("create", function(){
     }
   }
 
-  self.port.emit("created", createJUnit(io));
+  self.postMessage(createJUnit(io));
 
   function createJUnit(io){
     var text = [];
