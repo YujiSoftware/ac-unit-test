@@ -1,8 +1,0 @@
-#acunittest-icon {
-    list-style-image: url("resource://acunittest/skin/icon.png");
-    cursor: default;
-}
-
-#acunittest-icon:hover {
-    list-style-image: radial-gradient(circle closest-side, rgba(101, 203, 255, 0.2), transparent);
-}
