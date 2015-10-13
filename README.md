@@ -1,5 +1,5 @@
 #AC Unit Test
-AtCoder の問題ページから、ユニットテストを生成する Firefox アドインです。
+AtCoder の問題ページから、ユニットテストを生成する Firefox アドオンです。
 
 ##対応言語
 
