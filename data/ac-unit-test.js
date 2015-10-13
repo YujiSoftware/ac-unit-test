@@ -50,7 +50,7 @@ self.on("click", function(){
     
     for(var i = 0; i < io.length; i++){
       text.push('	@Test');
-      text.push('	public void ' + io[i].name + '() {');
+      text.push('	public void ' + io[i].name + '() throws Exception {');
       text.push('		String input = ');
       text.push('			"' + io[i].input.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n			"') + '";');
       text.push('		String output = ');
@@ -61,7 +61,7 @@ self.on("click", function(){
       text.push('');
     }
     
-    text.push('	private void assertIO(String input, String output) {');
+    text.push('	private void assertIO(String input, String output) throws Exception {');
     text.push('		ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());');
     text.push('		System.setIn(in);');
     text.push('');
