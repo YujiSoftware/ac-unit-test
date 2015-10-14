@@ -70,7 +70,7 @@ self.on("click", function(){
     text.push('');
     text.push('		Main.main(new String[0]);');
     text.push('');
-    text.push('		Assert.assertThat(output + System.lineSeparator(), is(out.toString()));');
+    text.push('		Assert.assertThat(out.toString(), is(output + System.lineSeparator()));');
     text.push('	}');
     text.push('}');
     
