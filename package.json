@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "AtCoder の問題ページから、ユニットテストを生成するアドオン",
   "main": "index.js",
+  "icon": "resource://acunittest/data/icon.png",
   "author": "YujiSoftware",
   "engines": {
     "firefox": ">=38.0a1"
