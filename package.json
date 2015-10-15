@@ -9,5 +9,21 @@
   "engines": {
     "firefox": ">=38.0a1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "preferences": [{
+      "name": "language",
+      "type": "radio",
+      "title": "プログラミング言語",
+      "value": "N",
+      "options": [
+          {
+              "value": "Java",
+              "label": "Java (JUnit)"
+          },
+          {
+              "value": "CSharp",
+              "label": "C# (MS Test)"
+          }
+      ]
+  }]
 }
