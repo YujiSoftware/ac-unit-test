@@ -76,4 +76,49 @@ self.on("click", function(){
     
     return text.join("\n");
   };
+
+  function createMSTest(io){
+    var text = [];
+    
+    text.push('using Microsoft.VisualStudio.TestTools.UnitTesting;');
+    text.push('using System;');
+    text.push('using System.IO;');
+    text.push('');
+    text.push('namespace AtCoder');
+    text.push('{');
+    text.push('    [TestClass]');
+    text.push('    public class ProgramTest');
+    text.push('    {');
+    
+    for(var i = 0; i < io.length; i++){
+      text.push('        [TestMethod]');
+      text.push('        public void ' + io[i].name + '()');
+      text.push('        {');
+      text.push('            string input =');
+      text.push('@"' + io[i].input.trim("\n").replace(/\n/g, '\r\n') + '";');
+      text.push('            string output =');
+      text.push('@"' + io[i].output.trim("\n").replace(/\n/g, '\r\n') + '";');
+      text.push('');
+      text.push('            AssertIO(input, output);');
+      text.push('        }');
+      text.push('');
+    }
+    
+    text.push('        private void AssertIO(string input, string output)');
+    text.push('        {');
+    text.push('            StringReader reader = new StringReader(input);');
+    text.push('            Console.SetIn(reader);');
+    text.push('');
+    text.push('            StringWriter writer = new StringWriter();');
+    text.push('            Console.SetOut(writer);');
+    text.push('');
+    text.push('            Program.Main(new string[0]);');
+    text.push('');
+    text.push('            Assert.AreEqual(output + Environment.NewLine, writer.ToString());');
+    text.push('        }');
+    text.push('    }');
+    text.push('}');
+    
+    return text.join("\r\n");
+  }
 });
