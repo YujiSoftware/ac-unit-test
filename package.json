@@ -14,7 +14,7 @@
       "name": "language",
       "type": "radio",
       "title": "プログラミング言語",
-      "value": "CSharp",
+      "value": "Java",
       "options": [
           {
               "value": "Java",
