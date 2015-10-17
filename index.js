@@ -17,6 +17,8 @@ cm.Item({
       case "CSharp":
         code = createMSTest(io);
         break;
+      default:
+        throw new Error("Unknown language. [prefs.language=" + prefs.language + "]");
     }
   
     clipboard.set(code);
