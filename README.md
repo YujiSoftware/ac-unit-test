@@ -4,6 +4,7 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 ##対応言語
 
 * Java (JUnit)
+* C# (MS Test)
 
 ##使い方
 
