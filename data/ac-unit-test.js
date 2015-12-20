@@ -1,15 +1,23 @@
 self.on("click", function(){
   // 問題全体を取得
-  var children = $("#task-statement").find("#task-statement").children();
+  var statement = $("div#task-statement");
+
+  // なぜか div#task-statement が二重になっているので、子を確認
+  // （大半は二重になっているが、arc046_a だけ二重になっていなかった）
+  var inner = statement.find("div#task-statement");
+  if(inner.length > 0){
+    statement = inner;
+  }
 
   var name = null;
   var input = null;
   var output = null;
   var io = [];
 
+  var children = statement.children();
   for(var i = 0; i < children.length; i++){
     var child = $(children[i]);
-    if(child.hasClass("part")){
+    if(child.hasClass("part") || child.get(0).tagName == "SECTION"){
       var h3 = child.find("h3");
       var pre = child.find("pre");
       if(h3.length > 0 && pre.length > 0){
