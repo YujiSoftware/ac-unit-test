@@ -17,7 +17,7 @@ self.on("click", function(){
         var example = pre[0].textContent;
       
         if(header.indexOf("入力例") == 0){
-          name = header;
+          name = header.replace(/\s/g, "");
           input = example;
         }else if(header.indexOf("出力例") == 0){
           output = example;
