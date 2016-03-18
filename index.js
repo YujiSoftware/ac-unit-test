@@ -65,6 +65,7 @@ function createJUnit(io){
   text.push('		Assert.assertThat(out.toString(), is(output + System.lineSeparator()));');
   text.push('	}');
   text.push('}');
+  text.push('');
   
   return text.join("\n");
 };
@@ -110,6 +111,7 @@ function createMSTest(io){
   text.push('        }');
   text.push('    }');
   text.push('}');
+  text.push('');
   
   return text.join("\r\n");
 }
