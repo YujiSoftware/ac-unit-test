@@ -1,7 +1,7 @@
 {
   "title": "AC Unit Test",
   "name": "acunittest",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "AtCoder の問題ページから、ユニットテストを生成するアドオン",
   "main": "index.js",
   "icon": "resource://acunittest/data/icon.png",
