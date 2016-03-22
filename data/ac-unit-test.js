@@ -11,8 +11,8 @@ self.on("click", function(){
     var h3 = section.find("h3");
     var pre = section.find("pre");
 
-    // SECTION の中に H3 タグがある場合と、
-    // SECTION の直前に H3 タグがある場合がある(ARC014_A)
+    // SECTION の中に H3 タグがある場合(ABC033_D)と、
+    // SECTION の直前に H3 タグがある場合(ARC014_A)がある
     if(h3.length == 0){
       var prev = section.prev();
       if(prev.length > 0 && prev[0].tagName == "H3"){
