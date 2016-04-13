@@ -23,7 +23,18 @@ self.on("click", function(){
     if(h3.length > 0 && pre.length > 0){
       var header = h3[0].textContent.trim();
       var example = pre[0].textContent;
-    
+
+      // シンタックスハイライトされている場合、リスト形式に
+      // なっているので、一行ずつ取り出す (ABC007_3、など)
+      var pretty = pre[0].getElementsByTagName("li");
+      if(pretty.length > 0){
+        example = "";
+        for(var j = 0; j < pretty.length; j++){
+          example += pretty[j].textContent;
+          example += "\n";
+        }
+      }
+
       if(header.indexOf("入力例") == 0){
         name = header.replace(/\s+/g, "_");
         input = example;
