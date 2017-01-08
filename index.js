@@ -1,10 +1,11 @@
 var clipboard = require("sdk/clipboard");
 var prefs = require("sdk/simple-prefs").prefs;
 var self = require("sdk/self");
+var _ = require("sdk/l10n").get;
 
 var cm = require("sdk/context-menu");
 cm.Item({
-  label: "ユニットテストを生成",
+  label: _("generate"),
   accesskey: "U",
   context: cm.URLContext(/.*.contest.atcoder.jp\/tasks\/.*/),
   contentScriptFile: [self.data.url("jquery-2.1.4.min.js"), self.data.url("ac-unit-test.js")],
