@@ -18,6 +18,9 @@
     "firefox": ">=38.0a1"
   },
   "license": "MIT",
+  "permissions": {
+    "multiprocess": true
+  },
   "preferences": [{
       "name": "language",
       "type": "radio",
