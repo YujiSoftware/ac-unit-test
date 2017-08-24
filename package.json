@@ -1,11 +1,11 @@
 {
   "locales": {
       "en": {
-          "title": "AC Unit Test",
+          "title": "AtCoder Unit Test",
           "description": "Generate unit tests from AtCoder's problem page."
       },
       "ja": {
-          "title": "AC Unit Test",
+          "title": "AtCoder Unit Test",
           "description": "AtCoder の問題ページから、ユニットテストを生成するアドオン"
       }
   },
