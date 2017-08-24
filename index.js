@@ -7,7 +7,7 @@ var cm = require("sdk/context-menu");
 cm.Item({
   label: _("generate"),
   accesskey: "U",
-  context: cm.URLContext(/.*.contest.atcoder.jp\/tasks\/.*/),
+  context: cm.URLContext([/.*\.contest\.atcoder\.jp\/tasks\/.+/, /.*\/\/beta\.atcoder\.jp\/contests\/.*\/tasks\/.+/]),
   contentScriptFile: [self.data.url("jquery-2.1.4.min.js"), self.data.url("ac-unit-test.js")],
   onMessage: function(io){
     var code;
