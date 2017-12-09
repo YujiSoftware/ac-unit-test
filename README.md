@@ -1,5 +1,6 @@
-#AtCoder Unit Test
-AtCoder の問題ページから、ユニットテストを生成する Firefox アドオンです。
+#AtCoder Unit Test (Google Chrome版)
+
+AtCoder の問題ページから、ユニットテストを生成する Google Chrome アドオンです。
 
 ##ダウンロード
 
@@ -11,7 +12,7 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 * Java (JUnit)
 * C# (MS Test)
 
-対応言語の切り替えは、アドオン → AC Unit Test を開いたところにある「プログラミング言語」のラジオボタンで行えます。
+対応言語の切り替えは、拡張機能 → AC Unit Test の「オプション」で行えます。
 
 ##使い方
 
@@ -32,9 +33,9 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 4. AtCoder の問題ページを開いて、右クリック → "ユニットテストを生成" をクリック
 5. MainTest.java 上で右クリック → "実行" → "JUnit テスト" をクリック
 
-## Google Chrome 版
+## Firefox 版
 
-[YujiSoftware/ac-unit-test-chrome: AtCoder の問題ページから、ユニットテストを生成する Google Chrome アドオン](https://github.com/YujiSoftware/ac-unit-test-chrome "YujiSoftware/ac-unit-test-chrome: AtCoder の問題ページから、ユニットテストを生成する Google Chrome アドオン")
+[YujiSoftware/ac-unit-test: AtCoder の問題ページから、ユニットテストを生成する Firefox アドオン](https://github.com/YujiSoftware/ac-unit-test "YujiSoftware/ac-unit-test: AtCoder の問題ページから、ユニットテストを生成する Firefox アドオン")
 
 ## License
 

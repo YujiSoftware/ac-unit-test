@@ -1,30 +1,77 @@
-var clipboard = require("sdk/clipboard");
-var prefs = require("sdk/simple-prefs").prefs;
-var self = require("sdk/self");
-var _ = require("sdk/l10n").get;
-
-var cm = require("sdk/context-menu");
-cm.Item({
-  label: _("generate"),
-  accesskey: "U",
-  context: cm.URLContext([/.*\.contest\.atcoder\.jp\/tasks\/.+/, /.*\/\/beta\.atcoder\.jp\/contests\/.*\/tasks\/.+/]),
-  contentScriptFile: [self.data.url("jquery-2.1.4.min.js"), self.data.url("ac-unit-test.js")],
-  onMessage: function(io){
-    var code;
-    switch(prefs.language){
-      case "Java":
-        code = createJUnit(io);
-        break;
-      case "CSharp":
-        code = createMSTest(io);
-        break;
-      default:
-        throw new Error("Unknown language. [prefs.language=" + prefs.language + "]");
-    }
-  
-    clipboard.set(code);
+chrome.runtime.onMessage.addListener(function (message, sender, callback) {
+  if (message.functiontoInvoke == "onClick") {
+    var io = onClick();
+    
+    chrome.storage.sync.get({
+      language: 'Java',
+    }, function(items) {
+      switch(items.language){
+        case "Java":
+          copy(createJUnit(io));
+          break;
+        case "CSharp":
+          copy(createMSTest(io));
+          break;
+        default:
+          throw new Error("Unknown language. [items.language=" + items.language + "]");
+      }
+    });
   }
 });
+
+function onClick(){
+  var name = null;
+  var input = null;
+  var output = null;
+  var io = [];
+
+  var sections = $("#task-statement section");
+  for(var i = 0; i < sections.length; i++){
+    var section = $(sections[i]);
+  
+    var h3 = section.find("h3");
+    var pre = section.find("pre");
+
+    // SECTION の中に H3 タグがある場合(ABC033_D)と、
+    // SECTION の直前に H3 タグがある場合(ARC014_A)がある
+    if(h3.length == 0){
+      var prev = section.prev();
+      if(prev.length > 0 && prev[0].tagName == "H3"){
+        h3 = prev;
+      }
+    }
+    
+    if(h3.length > 0 && pre.length > 0 && $(h3[0]).is(":visible")){
+      var header = h3[0].textContent.trim();
+      var example = pre[0].textContent;
+
+      // シンタックスハイライトされている場合、リスト形式に
+      // なっているので、一行ずつ取り出す (ABC007_3、など)
+      var pretty = pre[0].getElementsByTagName("li");
+      if(pretty.length > 0){
+        example = "";
+        for(var j = 0; j < pretty.length; j++){
+          example += pretty[j].textContent;
+          example += "\n";
+        }
+      }
+
+      if(header.indexOf("入力例") == 0 || header.indexOf("Sample Input") == 0){
+        name = header.replace(/\s+/g, "_");
+        input = example;
+      }else if(header.indexOf("出力例") == 0 || header.indexOf("Sample Output") == 0){
+        output = example;
+      }
+    }
+    
+    if(name != null && input != null && output != null){
+      io.push({ name: name, input: input, output: output });
+      name = input = output = null;
+    }
+  }
+
+  return io;
+}
 
 function createJUnit(io){
   var text = [];
@@ -115,4 +162,20 @@ function createMSTest(io){
   text.push('');
   
   return text.join("\r\n");
+}
+
+function copy(text){
+    var textArea = document.createElement("textarea");
+    textArea.style.cssText = "position: absolute; left: -100%;";
+
+    try{
+        document.body.appendChild(textArea);
+
+        textArea.value = text;
+        textArea.select();
+    
+        document.execCommand("copy");
+    }finally{
+        document.body.removeChild(textArea);
+    }
 }
