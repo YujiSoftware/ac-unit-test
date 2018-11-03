@@ -12,6 +12,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
         case "CSharp":
           copy(createMSTest(io));
           break;
+        case "Python3":
+          copy(createPyUnittest(io));
+          break;
         default:
           throw new Error("Unknown language. [items.language=" + items.language + "]");
       }
@@ -160,6 +163,38 @@ function createMSTest(io){
   text.push('    }');
   text.push('}');
   text.push('');
+  
+  return text.join("\r\n");
+}
+
+function createPyUnittest(io) {
+  var text = [];
+  
+  text.push('import sys');
+  text.push('from io import StringIO')
+  text.push('import unittest');
+  text.push('');
+  
+  text.push('class TestClass(unittest.TestCase):');
+  text.push('    def assertIO(self, input, output):');
+  text.push('        stdout, stdin = sys.stdout, sys.stdin');
+  text.push('        sys.stdout, sys.stdin = StringIO(), StringIO(input)');
+  text.push('        resolve()');
+  text.push('        sys.stdout.seek(0)');
+  text.push('        out = sys.stdout.read()[-1]');
+  text.push('        sys.stdout, sys.stdin = stdout, stdin');
+  text.push('        self.assertEqual(out, output)')
+  
+  for(var i = 0; i < io.length; i++){
+    text.push('    def test_' + io[i].name + '(self):');
+    text.push('        input = """' + io[i].input.trim("\n").replace(/\n/g, '\r\n') + '"""');
+    text.push('        output = """' + io[i].output.trim("\n").replace(/\n/g, '\r\n') + '"""');
+    text.push('        self.assertIO(input, output)');
+  }
+  text.push('');
+  
+  text.push('if __name__ == "__main__":');
+  text.push('    unittest.main()');
   
   return text.join("\r\n");
 }
