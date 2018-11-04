@@ -4,7 +4,7 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 
 ## ダウンロード
 
-* Firefox 版： [AC Unit Test :: Add-ons for Firefox](https://addons.mozilla.org/ja/firefox/addon/ac-unit-test/ "AC Unit Test :: Add-ons for Firefox")
+* Firefox 版： [AC Unit Test :: Add-ons for Firefox](https://addons.mozilla.org/firefox/addon/ac-unit-test/ "AC Unit Test :: Add-ons for Firefox")
 * Google Chrome 版： [AC Unit Test - Chrome ウェブストア](https://chrome.google.com/webstore/detail/lmahhninbclefepjbcdfbcjnancipfmi/ "AC Unit Test - Chrome ウェブストア")
 
 ## 対応言語
@@ -22,6 +22,13 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 
 これで、ユニットテストがクリップボードにコピーされました！
 あとは、任意のエディタで「貼り付け」を行ってください。
+
+## 使用上の注意
+
+* C#
+    * 問題を解くクラスの名前を `Program` にする必要があります。
+* Python
+    * 問題を解く関数の名前を `resolve` にする必要があります。
 
 ## （参考）eclipse でのユニットテスト作成＆実行方法
 
