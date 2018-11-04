@@ -181,7 +181,7 @@ function createPyUnittest(io) {
   text.push('        sys.stdout, sys.stdin = StringIO(), StringIO(input)');
   text.push('        resolve()');
   text.push('        sys.stdout.seek(0)');
-  text.push('        out = sys.stdout.read()[-1]');
+  text.push('        out = sys.stdout.read()[:-1]');
   text.push('        sys.stdout, sys.stdin = stdout, stdin');
   text.push('        self.assertEqual(out, output)')
   
