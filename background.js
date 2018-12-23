@@ -5,7 +5,7 @@ chrome.contextMenus.create({
     "contexts" : ["page"],
     "documentUrlPatterns": [
         "*://*.contest.atcoder.jp/tasks/*",
-        "*://beta.atcoder.jp/contests/*/tasks/*"
+        "*://atcoder.jp/contests/*/tasks/*"
     ]
 });
 
