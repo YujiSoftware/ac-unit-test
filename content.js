@@ -45,7 +45,7 @@ function onClick(){
     }
     
     if(h3.length > 0 && pre.length > 0 && $(h3[0]).is(":visible")){
-      var header = h3[0].textContent.trim();
+      var header = h3[0].firstChild.textContent.trim();
       var example = pre[0].textContent;
 
       // シンタックスハイライトされている場合、リスト形式に
