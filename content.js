@@ -77,126 +77,129 @@ function onClick(){
 }
 
 function createJUnit(io){
-  var text = [];
-  
-  text.push('import static org.hamcrest.CoreMatchers.is;');
-  text.push('');
-  text.push('import java.io.ByteArrayInputStream;');
-  text.push('import java.io.ByteArrayOutputStream;');
-  text.push('import java.io.PrintStream;');
-  text.push('');
-  text.push('import org.junit.Assert;');
-  text.push('import org.junit.Test;');
-  text.push('');
-  text.push('public class MainTest {');
-  text.push('');
+  var text = 
+`import static org.hamcrest.CoreMatchers.is;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class MainTest {
+`;
   
   for(var i = 0; i < io.length; i++){
-    text.push('	@Test');
-    text.push('	public void ' + io[i].name + '() throws Exception {');
-    text.push('		String input = ');
-    text.push('			"' + io[i].input.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n			"') + '";');
-    text.push('		String output = ');
-    text.push('			"' + io[i].output.trim("\n").replace(/\n/g, '" + System.lineSeparator() + \n			"') + '";');
-    text.push('');
-    text.push('		assertIO(input, output);');
-    text.push('	}');
-    text.push('');
+    text += `
+	@Test
+	public void ${io[i].name}() throws Exception {
+		String input = 
+			"${io[i].input.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n			"')}";
+		String output = 
+			"${io[i].output.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n			"')}";
+
+		assertIO(input, output);
+	}
+`;
   }
   
-  text.push('	private void assertIO(String input, String output) throws Exception {');
-  text.push('		ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());');
-  text.push('		System.setIn(in);');
-  text.push('');
-  text.push('		ByteArrayOutputStream out = new ByteArrayOutputStream();');
-  text.push('		System.setOut(new PrintStream(out));');
-  text.push('');
-  text.push('		Main.main(new String[0]);');
-  text.push('');
-  text.push('		Assert.assertThat(out.toString(), is(output + System.lineSeparator()));');
-  text.push('	}');
-  text.push('}');
-  text.push('');
+  text += `
+	private void assertIO(String input, String output) throws Exception {
+		ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+
+		Main.main(new String[0]);
+
+		Assert.assertThat(out.toString(), is(output + System.lineSeparator()));
+	}
+}
+`;
   
-  return text.join("\n");
+  return text;
 };
 
 function createMSTest(io){
-  var text = [];
-  
-  text.push('using Microsoft.VisualStudio.TestTools.UnitTesting;');
-  text.push('using System;');
-  text.push('using System.IO;');
-  text.push('');
-  text.push('namespace AtCoder');
-  text.push('{');
-  text.push('    [TestClass]');
-  text.push('    public class ProgramTest');
-  text.push('    {');
+  var text = 
+`using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
+
+namespace AtCoder
+{
+    [TestClass]
+    public class ProgramTest
+    {`;
   
   for(var i = 0; i < io.length; i++){
-    text.push('        [TestMethod]');
-    text.push('        public void ' + io[i].name + '()');
-    text.push('        {');
-    text.push('            string input =');
-    text.push('@"' + io[i].input.trim("\n").replace(/\n/g, '\r\n') + '";');
-    text.push('            string output =');
-    text.push('@"' + io[i].output.trim("\n").replace(/\n/g, '\r\n') + '";');
-    text.push('');
-    text.push('            AssertIO(input, output);');
-    text.push('        }');
-    text.push('');
+    text += `
+        [TestMethod]
+        public void ${io[i].name}()
+        {
+            string input =
+@"${io[i].input.trim("\n").replace(/\n/g, '\r\n')}";
+            string output =
+@"${io[i].output.trim("\n").replace(/\n/g, '\r\n')}";
+
+            AssertIO(input, output);
+        }
+`;
   }
   
-  text.push('        private void AssertIO(string input, string output)');
-  text.push('        {');
-  text.push('            StringReader reader = new StringReader(input);');
-  text.push('            Console.SetIn(reader);');
-  text.push('');
-  text.push('            StringWriter writer = new StringWriter();');
-  text.push('            Console.SetOut(writer);');
-  text.push('');
-  text.push('            Program.Main(new string[0]);');
-  text.push('');
-  text.push('            Assert.AreEqual(output + Environment.NewLine, writer.ToString());');
-  text.push('        }');
-  text.push('    }');
-  text.push('}');
-  text.push('');
+  text += `
+        private void AssertIO(string input, string output)
+        {
+            StringReader reader = new StringReader(input);
+            Console.SetIn(reader);
+
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Program.Main(new string[0]);
+
+            Assert.AreEqual(output + Environment.NewLine, writer.ToString());
+        }
+    }
+}
+`;
   
-  return text.join("\r\n");
+  return text;
 }
 
 function createPyUnittest(io) {
-  var text = [];
-  
-  text.push('import sys');
-  text.push('from io import StringIO')
-  text.push('import unittest');
-  text.push('');
-  
-  text.push('class TestClass(unittest.TestCase):');
-  text.push('    def assertIO(self, input, output):');
-  text.push('        stdout, stdin = sys.stdout, sys.stdin');
-  text.push('        sys.stdout, sys.stdin = StringIO(), StringIO(input)');
-  text.push('        resolve()');
-  text.push('        sys.stdout.seek(0)');
-  text.push('        out = sys.stdout.read()[:-1]');
-  text.push('        sys.stdout, sys.stdin = stdout, stdin');
-  text.push('        self.assertEqual(out, output)')
+  var text = 
+`import sys
+from io import StringIO
+import unittest
+
+class TestClass(unittest.TestCase):
+    def assertIO(self, input, output):
+        stdout, stdin = sys.stdout, sys.stdin
+        sys.stdout, sys.stdin = StringIO(), StringIO(input)
+        resolve()
+        sys.stdout.seek(0)
+        out = sys.stdout.read()[:-1]
+        sys.stdout, sys.stdin = stdout, stdin
+        self.assertEqual(out, output)
+`;
   
   for(var i = 0; i < io.length; i++){
-    text.push('    def test_' + io[i].name + '(self):');
-    text.push('        input = """' + io[i].input.trim("\n").replace(/\n/g, '\r\n') + '"""');
-    text.push('        output = """' + io[i].output.trim("\n").replace(/\n/g, '\r\n') + '"""');
-    text.push('        self.assertIO(input, output)');
+    text += 
+`    def test_${io[i].name}(self):
+        input = """${io[i].input.trim("\n").replace(/\n/g, '\r\n')}"""
+        output = """${io[i].output.trim("\n").replace(/\n/g, '\r\n')}"""
+        self.assertIO(input, output)
+`;
   }
-  text.push('');
+
+  text += `
+if __name__ == "__main__":
+    unittest.main()`;
   
-  text.push('if __name__ == "__main__":');
-  text.push('    unittest.main()');
-  
-  return text.join("\r\n");
+  return text;
 }
 
 function copy(text){
