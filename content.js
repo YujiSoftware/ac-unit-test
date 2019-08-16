@@ -217,8 +217,8 @@ class MainTest {
 `;
   
   for(var i = 0; i < io.length; i++){
-    text +=
-`    @Test
+    text +=`
+    @Test
     fun ${io[i].name}() {
         val input =
             "${io[i].input.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n            "')}";
@@ -230,15 +230,15 @@ class MainTest {
 `;
   }
   
-  text +=
-`    private fun assertIO(input: String, output: String) {
+  text +=`
+    private fun assertIO(input: String, output: String) {
         val sysIn = ByteArrayInputStream(input.toByteArray())
         System.setIn(sysIn)
 
         val sysOut = ByteArrayOutputStream()
         System.setOut(PrintStream(sysOut))
 
-        main(arrayOf())
+        abc000X()
 
         assertThat(sysOut.toString()).isEqualTo(output + System.lineSeparator())
     }
