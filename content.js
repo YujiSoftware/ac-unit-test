@@ -240,7 +240,7 @@ class MainTest {
 
         abc000X()
 
-        assertThat(sysOut.toString()).isEqualTo(output + System.lineSeparator())
+        Assert.assertThat(sysOut.toString(), equalTo(output + System.lineSeparator()))
     }
 }
 `;
