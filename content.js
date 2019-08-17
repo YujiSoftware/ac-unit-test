@@ -207,8 +207,9 @@ if __name__ == "__main__":
 
 function createJUnitKotlin(io){
   var text = 
-`import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+`import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert
+import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
