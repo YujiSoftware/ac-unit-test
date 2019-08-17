@@ -15,6 +15,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
         case "Python3":
           copy(createPyUnittest(io));
           break;
+        case "Kotlin":
+          copy(createJUnitKotlin(io));
+          break;
         default:
           throw new Error("Unknown language. [items.language=" + items.language + "]");
       }
@@ -201,6 +204,50 @@ if __name__ == "__main__":
   
   return text;
 }
+
+function createJUnitKotlin(io){
+  var text = 
+`import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert
+import org.junit.Test
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+
+class MainTest {
+`;
+  
+  for(var i = 0; i < io.length; i++){
+    text +=`
+    @Test
+    fun ${io[i].name}() {
+        val input =
+            "${io[i].input.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n            "')}";
+        val output =
+            "${io[i].output.trim("\n").replace(/\n/g, '" + System.lineSeparator() +\n            "')}";
+
+        assertIO(input, output);
+    }
+`;
+  }
+  
+  text +=`
+    private fun assertIO(input: String, output: String) {
+        val sysIn = ByteArrayInputStream(input.toByteArray())
+        System.setIn(sysIn)
+
+        val sysOut = ByteArrayOutputStream()
+        System.setOut(PrintStream(sysOut))
+
+        abc000X()
+
+        Assert.assertThat(sysOut.toString(), equalTo(output + System.lineSeparator()))
+    }
+}
+`;
+  
+  return text;
+};
 
 function copy(text){
     var textArea = document.createElement("textarea");
