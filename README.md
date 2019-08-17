@@ -10,9 +10,9 @@ AtCoder の問題ページから、ユニットテストを生成する Firefox 
 ## 対応言語
 
 * Java (JUnit)
+* Kotlin (JUnit)
 * C# (MS Test)
 * Python3 (unittest)
-* Kotlin (JUnit)
 
 対応言語の切り替えは、拡張機能 / アドオン → AC Unit Test の「オプション」で行えます。  
 ※デフォルトでは`Java (JUnit)`になっています。
