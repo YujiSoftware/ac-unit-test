@@ -178,6 +178,7 @@ function createPyUnittest(io) {
 from io import StringIO
 import unittest
 
+
 class TestClass(unittest.TestCase):
     def assertIO(self, input, output):
         stdout, stdin = sys.stdout, sys.stdin
@@ -187,6 +188,7 @@ class TestClass(unittest.TestCase):
         out = sys.stdout.read()[:-1]
         sys.stdout, sys.stdin = stdout, stdin
         self.assertEqual(out, output)
+
 `;
   
   for(var i = 0; i < io.length; i++){
@@ -195,12 +197,14 @@ class TestClass(unittest.TestCase):
         input = """${io[i].input.trim("\n").replace(/\n/g, '\r\n')}"""
         output = """${io[i].output.trim("\n").replace(/\n/g, '\r\n')}"""
         self.assertIO(input, output)
+
 `;
   }
 
   text += `
 if __name__ == "__main__":
-    unittest.main()`;
+    unittest.main()
+`;
   
   return text;
 }
