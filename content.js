@@ -7,16 +7,16 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
     }, function (items) {
       switch (items.language) {
         case "Java":
-          copy(createJUnit(io));
+          navigator.clipboard.writeText(createJUnit(io));
           break;
         case "CSharp":
-          copy(createMSTest(io));
+          navigator.clipboard.writeText(createMSTest(io));
           break;
         case "Python3":
-          copy(createPyUnittest(io));
+          navigator.clipboard.writeText(createPyUnittest(io));
           break;
         case "Kotlin":
-          copy(createJUnitKotlin(io));
+          navigator.clipboard.writeText(createJUnitKotlin(io));
           break;
         default:
           throw new Error("Unknown language. [items.language=" + items.language + "]");
@@ -250,19 +250,3 @@ class MainTest {
 
   return text;
 };
-
-function copy(text) {
-  let textArea = document.createElement("textarea");
-  textArea.style.cssText = "position: absolute; left: -100%;";
-
-  try {
-    document.body.appendChild(textArea);
-
-    textArea.value = text;
-    textArea.select();
-
-    document.execCommand("copy");
-  } finally {
-    document.body.removeChild(textArea);
-  }
-}
