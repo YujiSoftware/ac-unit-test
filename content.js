@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(function (message, sender, callback) {
   if (message.functiontoInvoke == "onClick") {
-    var io = onClick();
+    let io = onClick();
 
     chrome.storage.sync.get({
       language: 'Java',
@@ -26,35 +26,35 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
 });
 
 function onClick() {
-  var name = null;
-  var input = null;
-  var output = null;
-  var io = [];
+  let name = null;
+  let input = null;
+  let output = null;
+  let io = [];
 
-  var sections = document.querySelectorAll("#task-statement section");
+  const sections = document.querySelectorAll("#task-statement section");
   for (const section of sections) {
-    var h3 = section.querySelector("h3");
-    var pre = section.querySelector("pre");
+    let h3 = section.querySelector("h3");
+    let pre = section.querySelector("pre");
 
     // SECTION の中に H3 タグがある場合(ABC033_D)と、
     // SECTION の直前に H3 タグがある場合(ARC014_A)がある
     if (h3 == null) {
-      var prev = section.previousElementSibling;
+      let prev = section.previousElementSibling;
       if (prev != null > 0 && prev.tagName == "H3") {
         h3 = prev;
       }
     }
 
     if (h3 != null && pre != null && (h3.offsetWidth || h3.offsetHeight)) {
-      var header = h3.firstChild.textContent.trim();
-      var example = pre.textContent;
+      let header = h3.firstChild.textContent.trim();
+      let example = pre.textContent;
 
       // シンタックスハイライトされている場合、リスト形式に
       // なっているので、一行ずつ取り出す (ABC007_3、など)
-      var pretty = pre.getElementsByTagName("li");
+      let pretty = pre.getElementsByTagName("li");
       if (pretty.length > 0) {
         example = "";
-        for (var j = 0; j < pretty.length; j++) {
+        for (let j = 0; j < pretty.length; j++) {
           example += pretty[j].textContent;
           example += "\n";
         }
@@ -78,7 +78,7 @@ function onClick() {
 }
 
 function createJUnit(io) {
-  var text =
+  let text =
     `import static org.hamcrest.CoreMatchers.is;
 
 import java.io.ByteArrayInputStream;
@@ -91,7 +91,7 @@ import org.junit.Test;
 public class MainTest {
 `;
 
-  for (var i = 0; i < io.length; i++) {
+  for (let i = 0; i < io.length; i++) {
     text += `
 	@Test
 	public void ${io[i].name}() throws Exception {
@@ -124,7 +124,7 @@ public class MainTest {
 };
 
 function createMSTest(io) {
-  var text =
+  let text =
     `using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
@@ -135,7 +135,7 @@ namespace AtCoder
     public class ProgramTest
     {`;
 
-  for (var i = 0; i < io.length; i++) {
+  for (let i = 0; i < io.length; i++) {
     text += `
         [TestMethod]
         public void ${io[i].name}()
@@ -171,7 +171,7 @@ namespace AtCoder
 }
 
 function createPyUnittest(io) {
-  var text =
+  let text =
     `import sys
 from io import StringIO
 import unittest
@@ -189,7 +189,7 @@ class TestClass(unittest.TestCase):
 
 `;
 
-  for (var i = 0; i < io.length; i++) {
+  for (let i = 0; i < io.length; i++) {
     text +=
       `    def test_${io[i].name}(self):
         input = """${io[i].input.trim("\n").replace(/\n/g, '\r\n')}"""
@@ -208,7 +208,7 @@ if __name__ == "__main__":
 }
 
 function createJUnitKotlin(io) {
-  var text =
+  let text =
     `import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert
 import org.junit.Test
@@ -219,7 +219,7 @@ import java.io.PrintStream
 class MainTest {
 `;
 
-  for (var i = 0; i < io.length; i++) {
+  for (let i = 0; i < io.length; i++) {
     text += `
     @Test
     fun ${io[i].name}() {
@@ -252,7 +252,7 @@ class MainTest {
 };
 
 function copy(text) {
-  var textArea = document.createElement("textarea");
+  let textArea = document.createElement("textarea");
   textArea.style.cssText = "position: absolute; left: -100%;";
 
   try {
