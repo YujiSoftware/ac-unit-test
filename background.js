@@ -1,15 +1,15 @@
 chrome.contextMenus.create({
-    "title" : chrome.i18n.getMessage("generate"),
-    "type" : "normal",
+    "title": chrome.i18n.getMessage("generate"),
+    "type": "normal",
     "id": "createUnitTest",
-    "contexts" : ["page"],
+    "contexts": ["page"],
     "documentUrlPatterns": [
         "*://*.contest.atcoder.jp/tasks/*",
         "*://atcoder.jp/contests/*/tasks/*"
     ]
 });
 
-chrome.contextMenus.onClicked.addListener(function(info, tab) {
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
     chrome.tabs.query({
         "active": true,
         "currentWindow": true

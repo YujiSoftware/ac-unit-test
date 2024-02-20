@@ -7,7 +7,7 @@ function saveOptions() {
 function restoreOptions() {
   chrome.storage.sync.get({
     language: 'Java',
-  }, function(items) {
+  }, function (items) {
     document.getElementById("language").value = items.language;
   });
 }

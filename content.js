@@ -1,11 +1,11 @@
 chrome.runtime.onMessage.addListener(function (message, sender, callback) {
   if (message.functiontoInvoke == "onClick") {
     var io = onClick();
-    
+
     chrome.storage.sync.get({
       language: 'Java',
-    }, function(items) {
-      switch(items.language){
+    }, function (items) {
+      switch (items.language) {
         case "Java":
           copy(createJUnit(io));
           break;
@@ -25,50 +25,50 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
   }
 });
 
-function onClick(){
+function onClick() {
   var name = null;
   var input = null;
   var output = null;
   var io = [];
 
   var sections = document.querySelectorAll("#task-statement section");
-  for(const section of sections){
+  for (const section of sections) {
     var h3 = section.querySelector("h3");
     var pre = section.querySelector("pre");
 
     // SECTION の中に H3 タグがある場合(ABC033_D)と、
     // SECTION の直前に H3 タグがある場合(ARC014_A)がある
-    if(h3 == null){
+    if (h3 == null) {
       var prev = section.previousElementSibling;
-      if(prev != null > 0 && prev.tagName == "H3"){
+      if (prev != null > 0 && prev.tagName == "H3") {
         h3 = prev;
       }
     }
-    
-    if(h3 != null && pre != null && (h3.offsetWidth || h3.offsetHeight)){
+
+    if (h3 != null && pre != null && (h3.offsetWidth || h3.offsetHeight)) {
       var header = h3.firstChild.textContent.trim();
       var example = pre.textContent;
 
       // シンタックスハイライトされている場合、リスト形式に
       // なっているので、一行ずつ取り出す (ABC007_3、など)
       var pretty = pre.getElementsByTagName("li");
-      if(pretty.length > 0){
+      if (pretty.length > 0) {
         example = "";
-        for(var j = 0; j < pretty.length; j++){
+        for (var j = 0; j < pretty.length; j++) {
           example += pretty[j].textContent;
           example += "\n";
         }
       }
 
-      if(header.indexOf("入力例") == 0 || header.indexOf("Sample Input") == 0){
+      if (header.indexOf("入力例") == 0 || header.indexOf("Sample Input") == 0) {
         name = header.replace(/\s+/g, "_");
         input = example;
-      }else if(header.indexOf("出力例") == 0 || header.indexOf("Sample Output") == 0){
+      } else if (header.indexOf("出力例") == 0 || header.indexOf("Sample Output") == 0) {
         output = example;
       }
     }
-    
-    if(name != null && input != null && output != null){
+
+    if (name != null && input != null && output != null) {
       io.push({ name: name, input: input, output: output });
       name = input = output = null;
     }
@@ -77,9 +77,9 @@ function onClick(){
   return io;
 }
 
-function createJUnit(io){
-  var text = 
-`import static org.hamcrest.CoreMatchers.is;
+function createJUnit(io) {
+  var text =
+    `import static org.hamcrest.CoreMatchers.is;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -90,8 +90,8 @@ import org.junit.Test;
 
 public class MainTest {
 `;
-  
-  for(var i = 0; i < io.length; i++){
+
+  for (var i = 0; i < io.length; i++) {
     text += `
 	@Test
 	public void ${io[i].name}() throws Exception {
@@ -104,7 +104,7 @@ public class MainTest {
 	}
 `;
   }
-  
+
   text += `
 	private void assertIO(String input, String output) throws Exception {
 		ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -119,13 +119,13 @@ public class MainTest {
 	}
 }
 `;
-  
+
   return text;
 };
 
-function createMSTest(io){
-  var text = 
-`using Microsoft.VisualStudio.TestTools.UnitTesting;
+function createMSTest(io) {
+  var text =
+    `using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 
@@ -134,8 +134,8 @@ namespace AtCoder
     [TestClass]
     public class ProgramTest
     {`;
-  
-  for(var i = 0; i < io.length; i++){
+
+  for (var i = 0; i < io.length; i++) {
     text += `
         [TestMethod]
         public void ${io[i].name}()
@@ -149,7 +149,7 @@ namespace AtCoder
         }
 `;
   }
-  
+
   text += `
         private void AssertIO(string input, string output)
         {
@@ -166,13 +166,13 @@ namespace AtCoder
     }
 }
 `;
-  
+
   return text;
 }
 
 function createPyUnittest(io) {
-  var text = 
-`import sys
+  var text =
+    `import sys
 from io import StringIO
 import unittest
 
@@ -188,10 +188,10 @@ class TestClass(unittest.TestCase):
         self.assertEqual(out, output)
 
 `;
-  
-  for(var i = 0; i < io.length; i++){
-    text += 
-`    def test_${io[i].name}(self):
+
+  for (var i = 0; i < io.length; i++) {
+    text +=
+      `    def test_${io[i].name}(self):
         input = """${io[i].input.trim("\n").replace(/\n/g, '\r\n')}"""
         output = """${io[i].output.trim("\n").replace(/\n/g, '\r\n')}"""
         self.assertIO(input, output)
@@ -203,13 +203,13 @@ class TestClass(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 `;
-  
+
   return text;
 }
 
-function createJUnitKotlin(io){
-  var text = 
-`import org.hamcrest.CoreMatchers.equalTo
+function createJUnitKotlin(io) {
+  var text =
+    `import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert
 import org.junit.Test
 import java.io.ByteArrayInputStream
@@ -218,9 +218,9 @@ import java.io.PrintStream
 
 class MainTest {
 `;
-  
-  for(var i = 0; i < io.length; i++){
-    text +=`
+
+  for (var i = 0; i < io.length; i++) {
+    text += `
     @Test
     fun ${io[i].name}() {
         val input =
@@ -232,8 +232,8 @@ class MainTest {
     }
 `;
   }
-  
-  text +=`
+
+  text += `
     private fun assertIO(input: String, output: String) {
         val sysIn = ByteArrayInputStream(input.toByteArray())
         System.setIn(sysIn)
@@ -247,22 +247,22 @@ class MainTest {
     }
 }
 `;
-  
+
   return text;
 };
 
-function copy(text){
-    var textArea = document.createElement("textarea");
-    textArea.style.cssText = "position: absolute; left: -100%;";
+function copy(text) {
+  var textArea = document.createElement("textarea");
+  textArea.style.cssText = "position: absolute; left: -100%;";
 
-    try{
-        document.body.appendChild(textArea);
+  try {
+    document.body.appendChild(textArea);
 
-        textArea.value = text;
-        textArea.select();
-    
-        document.execCommand("copy");
-    }finally{
-        document.body.removeChild(textArea);
-    }
+    textArea.value = text;
+    textArea.select();
+
+    document.execCommand("copy");
+  } finally {
+    document.body.removeChild(textArea);
+  }
 }

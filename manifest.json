@@ -4,41 +4,39 @@
   "manifest_version": 2,
   "description": "__MSG_extDescription__",
   "default_locale": "en",
-  
   "applications": {
     "gecko": {
       "id": "@acunittest"
     }
   },
-  
-  "permissions" : [
+  "permissions": [
     "*://*.contest.atcoder.jp/tasks/*",
     "*://atcoder.jp/contests/*/tasks/*",
     "contextMenus",
     "clipboardWrite",
     "storage"
   ],
-  
-  "icons" : {
-    "48" : "icon.png"
+  "icons": {
+    "48": "icon.png"
   },
-  
-  "background" : {
-    "scripts" : ["background.js"],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   },
   "content_scripts": [
-        {
-            "matches": [
-                "*://*.contest.atcoder.jp/tasks/*",
-                "*://atcoder.jp/contests/*/tasks/*"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "run_at" : "document_start"
-        }
-    ],
+    {
+      "matches": [
+        "*://*.contest.atcoder.jp/tasks/*",
+        "*://atcoder.jp/contests/*/tasks/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
   "options_ui": {
     "page": "options.html",
     "chrome_style": true
