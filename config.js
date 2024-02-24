@@ -1,6 +1,7 @@
 function load(outer, inner) {
     document.getElementById("outerCode").value = outer;
     document.getElementById("innerCode").value = inner;
+    save();
 }
 
 function loadPython() {
@@ -167,34 +168,36 @@ function save() {
     chrome.storage.sync.set({
         outer: document.getElementById("outerCode").value,
         inner: document.getElementById("innerCode").value
-    })
+    });
+    console.debug("Saved.")
 }
 
 async function initialize() {
-    const items = await chrome.storage.sync.get();
-    if (items.language !== undefined) {
-        // upgrade from v1
-        switch (items.language) {
-            case "Java":
-                loadJava();
-                break;
-            case "Kotlin":
-                loadKotlin();
-                break;
-            case "CSharp":
-                loadCSharp();
-                break;
-            case "Python3":
-                loadPython();
-                break;
-        }
+    chrome.storage.sync.get(null, function (items) {
+        if (items.language !== undefined) {
+            // upgrade from v1
+            switch (items.language) {
+                case "Java":
+                    loadJava();
+                    break;
+                case "Kotlin":
+                    loadKotlin();
+                    break;
+                case "CSharp":
+                    loadCSharp();
+                    break;
+                case "Python3":
+                    loadPython();
+                    break;
+            }
 
-        await chrome.storage.sync.remove("language");
-    } else if (items.outer === undefined || items.inner === undefined) {
-        loadPython();
-    } else {
-        load(items.outer, items.inner);
-    }
+            chrome.storage.sync.remove("language");
+        } else if (items.outer === undefined || items.inner === undefined) {
+            loadPython();
+        } else {
+            load(items.outer, items.inner);
+        }
+    });
 
     document.getElementById("loadPython").addEventListener("click", loadPython);
     document.getElementById("loadJava").addEventListener("click", loadJava);
