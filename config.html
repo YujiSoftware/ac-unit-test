@@ -1,18 +1,12 @@
 <!doctype html>
-<html data-bs-theme="auto">
+<html data-bs-theme="dark">
 
 <head>
     <title>AtCoder Unit Test</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script>
-        const updateTheme = () => {
-            document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-        };
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-        updateTheme();
-    </script>
+    <script src="config.js"></script>
     <link href="bootstrap.min.css" rel="stylesheet">
     <style>
         .bi {
@@ -52,40 +46,50 @@
                         </svg>
                         入力している内容を上書きします。
                     </div>
-                    <button type="button" class="btn btn-outline-primary">Python3 <small>(unittest)</small></button>
-                    <button type="button" class="btn btn-outline-primary">Java <small>(JUnit5)</small></button>
-                    <button type="button" class="btn btn-outline-primary">Kotlin <small>(JUnit5)</small></button>
-                    <button type="button" class="btn btn-outline-primary">C# <small>(MS Test)</small></button>
+                    <button onclick="loadPython()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Python3 <small>(unittest)</small>
+                    </button>
+                    <button onclick="loadJava()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Java <small>(JUnit5)</small>
+                    </button>
+                    <button onclick="loadKotlin()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Kotlin <small>(JUnit5)</small>
+                    </button>
+                    <button onclick="loadCSharp()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        C# <small>(MS Test)</small>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="mb-3">
-        <label for="outer" class="form-label">ファイル全体のコード</label>
-        <textarea class="form-control" id="outer" name="outer" rows="15"></textarea>
+        <label for="outerCode" class="form-label">ファイル全体のコード</label>
+        <textarea class="form-control font-monospace bg-body-secondary" id="outerCode" name="outerCode"
+            rows="15"></textarea>
         <div class="form-text">
             <ul>
                 <li>
-                    テストメソッドを挿入する箇所に "<a href="#" class="link-offset-3 font-monospace fw-bold">{{ METHOD }}</a>"
+                    テストメソッドを挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ METHOD }}</a>
                     と記述してください。
                 </li>
             </ul>
         </div>
     </div>
     <div class="mb-3">
-        <label for="innter" class="form-label">テストメソッドのコード</label>
-        <textarea class="form-control" id="innter" name="innter" rows="15"></textarea>
+        <label for="innerCode" class="form-label">テストメソッドのコード</label>
+        <textarea class="form-control font-monospace bg-body-secondary" id="innerCode" name="innerCode"
+            rows="10"></textarea>
         <div class="form-text">
             <ul>
                 <li>
-                    メソッド名を挿入する箇所に "<a href="#" class="link-offset-3 font-monospace fw-bold">{{ NAME }}</a>" と記述してください。
+                    メソッド名を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ NAME }}</a> と記述してください。
                 </li>
                 <li>
-                    入力例を挿入する箇所に "<a href="#" class="link-offset-3 font-monospace fw-bold">{{ INPUT }}</a>" と記述してください。
+                    入力例を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ INPUT }}</a> と記述してください。
                 </li>
                 <li>
-                    出力例を挿入する箇所に "<a href="#" class="link-offset-3 font-monospace fw-bold">{{ OUTPUT }}</a>" と記述してください。
+                    出力例を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ OUTPUT }}</a> と記述してください。
                 </li>
             </ul>
         </div>
