@@ -38,7 +38,7 @@
     }
   ],
   "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
+    "page": "config.html",
+    "open_in_tab": true
   }
 }

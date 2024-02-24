@@ -19,3 +19,16 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
         });
     });
 });
+
+chrome.runtime.onInstalled.addListener(details => {
+    switch (details.reason) {
+        case chrome.runtime.OnInstalledReason.INSTALL:
+            chrome.runtime.openOptionsPage();
+            break;
+        case chrome.runtime.OnInstalledReason.UPDATE:
+            if (details.previousVersion.startsWith("2.")) {
+                chrome.runtime.openOptionsPage();
+            }
+            break;
+    }
+});
