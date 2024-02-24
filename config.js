@@ -195,6 +195,13 @@ async function initialize() {
     } else {
         load(items.outer, items.inner);
     }
+
+    document.getElementById("loadPython").addEventListener("click", loadPython);
+    document.getElementById("loadJava").addEventListener("click", loadJava);
+    document.getElementById("loadKotlin").addEventListener("click", loadKotlin);
+    document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
+    document.getElementById("outerCode").addEventListener("change", save);
+    document.getElementById("innerCode").addEventListener("change", save);
 }
 
 document.addEventListener('DOMContentLoaded', initialize);

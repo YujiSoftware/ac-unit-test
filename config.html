@@ -46,16 +46,16 @@
                         </svg>
                         入力している内容を上書きします。
                     </div>
-                    <button onclick="loadPython()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    <button id="loadPython" class="btn btn-outline-primary" data-bs-dismiss="modal">
                         Python3 <small>(unittest)</small>
                     </button>
-                    <button onclick="loadJava()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    <button id="loadJava" class="btn btn-outline-primary" data-bs-dismiss="modal">
                         Java <small>(JUnit5)</small>
                     </button>
-                    <button onclick="loadKotlin()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    <button id="loadKotlin" class="btn btn-outline-primary" data-bs-dismiss="modal">
                         Kotlin <small>(JUnit5)</small>
                     </button>
-                    <button onclick="loadCSharp()" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                    <button id="loadCSharp" class="btn btn-outline-primary" data-bs-dismiss="modal">
                         C# <small>(MS Test)</small>
                     </button>
                 </div>
@@ -66,7 +66,7 @@
     <div class="mb-3">
         <label for="outerCode" class="form-label">ファイル全体のコード</label>
         <textarea class="form-control font-monospace bg-body-secondary" id="outerCode" name="outerCode"
-            onchange="save()" rows="15"></textarea>
+            rows="15"></textarea>
         <div class="form-text">
             <ul>
                 <li>
@@ -79,7 +79,7 @@
     <div class="mb-3">
         <label for="innerCode" class="form-label">テストメソッドのコード</label>
         <textarea class="form-control font-monospace bg-body-secondary" id="innerCode" name="innerCode"
-            onchange="save()" rows="10"></textarea>
+            rows="10"></textarea>
         <div class="form-text">
             <ul>
                 <li>
