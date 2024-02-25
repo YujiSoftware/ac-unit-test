@@ -80,9 +80,8 @@ public class MainTest {
 
 function loadKotlin() {
     const outer = `
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
@@ -98,7 +97,7 @@ class MainTest {
 
         main()
 
-        Assert.assertThat(sysOut.toString(), equalTo(output + System.lineSeparator()))
+        Assertions.assertEquals(output + System.lineSeparator(), sysOut.toString())
     }
 }
 `.replace(/^\n/g, "");
@@ -106,12 +105,12 @@ class MainTest {
     const inner = `
     @Test
     fun {{ NAME }}() {
-        String input = """
-{{ INPUT }}""";
-        String output = """
-{{ OUTPUT }}""";
+        val input = """
+{{ INPUT }}""".trimMargin()
+        val output = """
+{{ OUTPUT }}""".trimMargin()
 
-        assertIO(input, output);
+        assertIO(input, output)
     }
 `.replace(/^\n/g, "");
 
