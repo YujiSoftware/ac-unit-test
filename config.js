@@ -40,14 +40,12 @@ if __name__ == "__main__":
 
 function loadJava() {
     const outer = `
-import static org.hamcrest.CoreMatchers.is;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class MainTest {
 {{ METHOD }}
@@ -60,7 +58,7 @@ public class MainTest {
 
         Main.main(new String[0]);
 
-        Assert.assertThat(out.toString(), is(output + System.lineSeparator()));
+        Assertions.assertEquals(output + System.lineSeparator(), out.toString());
     }
 }
 `.replace(/^\n/g, "");
