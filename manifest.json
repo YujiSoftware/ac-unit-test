@@ -1,20 +1,22 @@
 {
   "name": "AtCoder Unit Test",
   "version": "2.1.5",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "__MSG_extDescription__",
   "default_locale": "en",
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "@acunittest"
     }
   },
   "permissions": [
-    "*://*.contest.atcoder.jp/tasks/*",
-    "*://atcoder.jp/contests/*/tasks/*",
     "contextMenus",
     "clipboardWrite",
     "storage"
+  ],
+  "host_permissions": [
+    "*://*.contest.atcoder.jp/tasks/*",
+    "*://atcoder.jp/contests/*/tasks/*"
   ],
   "icons": {
     "48": "icon.png"
@@ -22,8 +24,7 @@
   "background": {
     "scripts": [
       "background.js"
-    ],
-    "persistent": false
+    ]
   },
   "content_scripts": [
     {
