@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(async function (message, sender, callback) {
+chrome.runtime.onMessage.addListener(function (message, sender, callback) {
   if (message.functiontoInvoke != "onClick") {
     return;
   }
@@ -13,8 +13,10 @@ chrome.runtime.onMessage.addListener(async function (message, sender, callback) 
     ).join("");
     const code = items.outer.replace(/{{\s*METHOD\s*}}/g, method);
 
-    navigator.clipboard.writeText(code);
+    callback(code);
   });
+
+  return true;
 });
 
 function onClick() {

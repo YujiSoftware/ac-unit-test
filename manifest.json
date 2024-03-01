@@ -10,7 +10,6 @@
     }
   },
   "permissions": [
-    "contextMenus",
     "clipboardWrite",
     "storage"
   ],
@@ -22,6 +21,7 @@
     "48": "icon.png"
   },
   "background": {
+    "service_worker": "background.js",
     "scripts": [
       "background.js"
     ]
@@ -41,5 +41,8 @@
   "options_ui": {
     "page": "config.html",
     "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "popup.html"
   }
 }
