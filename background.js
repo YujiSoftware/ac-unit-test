@@ -12,4 +12,26 @@ chrome.runtime.onInstalled.addListener(details => {
 
     // Page actions are disabled by default and enabled on select tabs
     chrome.action.disable();
+
+    // Google Chrome の API ページでは、declarativeContent を使うように書かれている。
+    // https://developer.chrome.com/docs/extensions/reference/api/action?hl=ja#emulate_actions_with_declarativecontent
+    // しかし、Firefox は declarativeContent に対応していない。
+    // > Unsupported APIs - DeclarativeContent API
+    // > Chrome's declarativeContent API is not implemented.
+    // > https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Chrome_incompatibilities#unsupported_apis
+    // Bugzilla によれば、tabs API で代替できるとのことだったので、これを使って実装する。
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1435864
+    chrome.tabs.onUpdated.removeListener(onUpdated);
+    chrome.tabs.onUpdated.addListener(onUpdated);
+    function onUpdated(tabId, changeInfo, tab) {
+        if (changeInfo.url === undefined) {
+            return;
+        }
+
+        if (/https?:\/\/atcoder.jp\/contests\/[^\/]+\/tasks\/[^\/]+/.test(changeInfo.url)) {
+            chrome.action.enable(tabId);
+        } else {
+            chrome.action.disable();
+        }
+    }
 });
