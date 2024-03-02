@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, callback) {
         .replace(/{{\s*NAME*\s}}/g, e.name)
         .replace(/{{\s*INPUT\s*}}/g, e.input)
         .replace(/{{\s*OUTPUT\s*}}/g, e.output)
-    ).join("");
+    ).join("\n");
     const code = items.outer.replace(/{{\s*METHOD\s*}}/g, method);
 
     callback(code);
