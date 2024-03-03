@@ -4,5 +4,14 @@
   },
   "extDescription": {
     "message": "Generate unit tests from AtCoder's problem page."
+  },
+  "prosessing": {
+    "message": "Processing..."
+  },
+  "open_options": {
+    "message": "Open options"
+  },
+  "copied": {
+    "message": "Copied."
   }
 }

@@ -4,5 +4,14 @@
   },
   "extDescription": {
     "message": "AtCoder の問題ページから、ユニットテストを生成するアドオン"
+  },
+  "prosessing": {
+    "message": "処理中..."
+  },
+  "open_options": {
+    "message": "設定を開く"
+  },
+  "copied": {
+    "message": "コピーしました。"
   }
 }
