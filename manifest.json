@@ -39,7 +39,7 @@
     }
   ],
   "options_ui": {
-    "page": "config.html",
+    "page": "options.html",
     "open_in_tab": true
   },
   "action": {
