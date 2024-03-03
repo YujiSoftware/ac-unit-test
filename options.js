@@ -169,6 +169,15 @@ function save() {
     console.debug("Saved.")
 }
 
+function copy(e) {
+    navigator.clipboard.writeText(e.target.textContent);
+    e.preventDefault();
+
+    const tooltip = bootstrap.Tooltip.getOrCreateInstance(e.target);
+    tooltip.show();
+    setTimeout(() => tooltip.hide(), 1500);
+}
+
 async function initialize() {
     document.querySelectorAll('[data-i18n]').forEach(e => {
         e.innerHTML = chrome.i18n.getMessage(e.dataset.i18n);
@@ -206,6 +215,7 @@ async function initialize() {
     document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
     document.getElementById("outerCode").addEventListener("change", save);
     document.getElementById("innerCode").addEventListener("change", save);
+    Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
 }
 
 document.addEventListener('DOMContentLoaded', initialize);

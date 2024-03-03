@@ -18,19 +18,19 @@
     "message": "Test class"
   },
   "write_method": {
-    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ METHOD }}</a> where you want to insert the test method."
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ METHOD }}</a> where you want to insert the test method."
   },
   "test_method_code": {
     "message": "Test method"
   },
   "write_name": {
-    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ NAME }}</a> where you want to insert the test mthod name."
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ NAME }}</a> where you want to insert the test mthod name."
   },
   "write_input": {
-    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ INPUT }}</a> where you want to insert the input example."
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ INPUT }}</a> where you want to insert the input example."
   },
   "write_output": {
-    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ OUTPUT }}</a> where you want to insert the output example"
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ OUTPUT }}</a> where you want to insert the output example"
   },
   "prosessing": {
     "message": "Processing..."
