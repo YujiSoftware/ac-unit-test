@@ -10,6 +10,14 @@ chrome.runtime.onInstalled.addListener(details => {
             break;
     }
 
+    initialize();
+});
+
+chrome.runtime.onStartup.addListener(function () {
+    initialize();
+});
+
+function initialize() {
     // Page actions are disabled by default and enabled on select tabs
     chrome.action.disable();
 
@@ -23,15 +31,16 @@ chrome.runtime.onInstalled.addListener(details => {
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1435864
     chrome.tabs.onUpdated.removeListener(onUpdated);
     chrome.tabs.onUpdated.addListener(onUpdated);
-    function onUpdated(tabId, changeInfo, tab) {
-        if (changeInfo.url === undefined) {
-            return;
-        }
+}
 
-        if (/https?:\/\/atcoder.jp\/contests\/[^\/]+\/tasks\/[^\/]+/.test(changeInfo.url)) {
-            chrome.action.enable(tabId);
-        } else {
-            chrome.action.disable();
-        }
+function onUpdated(tabId, changeInfo, tab) {
+    if (changeInfo.url === undefined) {
+        return;
     }
-});
+
+    if (/https?:\/\/atcoder.jp\/contests\/[^\/]+\/tasks\/[^\/]+/.test(changeInfo.url)) {
+        chrome.action.enable(tabId);
+    } else {
+        chrome.action.disable();
+    }
+}
