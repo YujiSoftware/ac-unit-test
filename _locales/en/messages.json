@@ -5,6 +5,33 @@
   "extDescription": {
     "message": "Generate unit tests from AtCoder's problem page."
   },
+  "template": {
+    "message": "Template"
+  },
+  "select_template": {
+    "message": "Select template"
+  },
+  "warning_template": {
+    "message": "Overwrite what you have already entered."
+  },
+  "test_class_code": {
+    "message": "Test class"
+  },
+  "write_method": {
+    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ METHOD }}</a> where you want to insert the test method."
+  },
+  "test_method_code": {
+    "message": "Test method"
+  },
+  "write_name": {
+    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ NAME }}</a> where you want to insert the test mthod name."
+  },
+  "write_input": {
+    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ INPUT }}</a> where you want to insert the input example."
+  },
+  "write_output": {
+    "message": "Write <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ OUTPUT }}</a> where you want to insert the output example"
+  },
   "prosessing": {
     "message": "Processing..."
   },

@@ -170,6 +170,10 @@ function save() {
 }
 
 async function initialize() {
+    document.querySelectorAll('[data-i18n]').forEach(e => {
+        e.innerHTML = chrome.i18n.getMessage(e.dataset.i18n);
+    });
+
     chrome.storage.sync.get(null, function (items) {
         if (items.language !== undefined) {
             // upgrade from v1

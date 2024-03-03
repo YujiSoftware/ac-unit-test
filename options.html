@@ -28,7 +28,8 @@
 
     <h1 class="my-3">AtCoder Unit Test</h1>
     <div class="text-end">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-i18n="template">
             テンプレート
         </button>
     </div>
@@ -36,7 +37,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">テンプレートの選択</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" data-i18n="select_template">テンプレートの選択</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body row row-gap-3 mx-3">
@@ -44,7 +45,7 @@
                         <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:">
                             <use xlink:href="#exclamation-triangle-fill" />
                         </svg>
-                        入力している内容を上書きします。
+                        <span data-i18n="warning_template">入力している内容を上書きします。</span>
                     </div>
                     <button id="loadPython" class="btn btn-outline-primary" data-bs-dismiss="modal">
                         Python3 <small>(unittest)</small>
@@ -64,12 +65,12 @@
     </div>
 
     <div class="mb-3">
-        <label for="outerCode" class="form-label">ファイル全体のコード</label>
+        <label for="outerCode" class="form-label" data-i18n="test_class_code">テストクラスのコード</label>
         <textarea class="form-control font-monospace bg-body-secondary" id="outerCode" name="outerCode"
             rows="15"></textarea>
         <div class="form-text">
             <ul>
-                <li>
+                <li data-i18n="write_method">
                     テストメソッドを挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ METHOD }}</a>
                     と記述してください。
                 </li>
@@ -77,18 +78,18 @@
         </div>
     </div>
     <div class="mb-3">
-        <label for="innerCode" class="form-label">テストメソッドのコード</label>
+        <label for="innerCode" class="form-label" data-i18n="test_method_code">テストメソッドのコード</label>
         <textarea class="form-control font-monospace bg-body-secondary" id="innerCode" name="innerCode"
             rows="10"></textarea>
         <div class="form-text">
             <ul>
-                <li>
+                <li data-i18n="write_name">
                     メソッド名を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ NAME }}</a> と記述してください。
                 </li>
-                <li>
+                <li data-i18n="write_input">
                     入力例を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ INPUT }}</a> と記述してください。
                 </li>
-                <li>
+                <li data-i18n="write_output">
                     出力例を挿入する箇所に <a href="#" class="link-offset-3 font-monospace fw-bold">{{ OUTPUT }}</a> と記述してください。
                 </li>
             </ul>

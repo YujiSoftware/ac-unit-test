@@ -5,6 +5,33 @@
   "extDescription": {
     "message": "AtCoder の問題ページから、ユニットテストを生成するアドオン"
   },
+  "template": {
+    "message": "テンプレート"
+  },
+  "select_template": {
+    "message": "テンプレートの選択"
+  },
+  "warning_template": {
+    "message": "入力している内容を上書きします。"
+  },
+  "test_class_code": {
+    "message": "テストクラスのコード"
+  },
+  "write_method": {
+    "message": "テストメソッドを挿入する箇所に <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ METHOD }}</a> と記述してください。"
+  },
+  "test_method_code": {
+    "message": "テストメソッドのコード"
+  },
+  "write_name": {
+    "message": "メソッド名を挿入する箇所に <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ NAME }}</a> と記述してください。"
+  },
+  "write_input": {
+    "message": "入力例を挿入する箇所に <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ INPUT }}</a> と記述してください。"
+  },
+  "write_output": {
+    "message": "出力例を挿入する箇所に <a href=\"#\" class=\"link-offset-3 font-monospace fw-bold\">{{ OUTPUT }}</a> と記述してください。"
+  },
   "prosessing": {
     "message": "処理中..."
   },
