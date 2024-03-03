@@ -4,8 +4,5 @@
   },
   "extDescription": {
     "message": "AtCoder の問題ページから、ユニットテストを生成するアドオン"
-  },
-  "language_label": {
-    "message": "生成するテストコードの言語："
   }
 }

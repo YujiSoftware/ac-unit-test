@@ -4,8 +4,5 @@
   },
   "extDescription": {
     "message": "Generate unit tests from AtCoder's problem page."
-  },
-  "language_label": {
-    "message": "Language of generated test code:"
   }
 }
