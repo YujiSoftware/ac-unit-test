@@ -34,7 +34,7 @@ function initialize() {
 }
 
 function onUpdated(tabId, changeInfo, tab) {
-    if (changeInfo.url === undefined) {
+    if (changeInfo.status != "loading") {
         return;
     }
 
