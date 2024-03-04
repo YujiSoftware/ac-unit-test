@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-bs-theme="dark">
+<html>
 
 <head>
     <title>AtCoder Unit Test</title>
@@ -18,7 +18,7 @@
     </style>
 </head>
 
-<body class="container-lg">
+<body class="container-lg bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
             <path
@@ -66,8 +66,7 @@
 
     <div class="mb-3">
         <label for="outerCode" class="form-label" data-i18n="test_class_code">テストクラスのコード</label>
-        <textarea class="form-control font-monospace bg-body-secondary" id="outerCode" name="outerCode"
-            rows="15"></textarea>
+        <textarea class="form-control font-monospace" id="outerCode" name="outerCode" rows="15"></textarea>
         <div class="form-text">
             <ul>
                 <li data-i18n="write_method">
@@ -79,8 +78,7 @@
     </div>
     <div class="mb-3">
         <label for="innerCode" class="form-label" data-i18n="test_method_code">テストメソッドのコード</label>
-        <textarea class="form-control font-monospace bg-body-secondary" id="innerCode" name="innerCode"
-            rows="10"></textarea>
+        <textarea class="form-control font-monospace" id="innerCode" name="innerCode" rows="10"></textarea>
         <div class="form-text">
             <ul>
                 <li data-i18n="write_name">
