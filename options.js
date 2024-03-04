@@ -202,8 +202,10 @@ async function initialize() {
             }
 
             chrome.storage.sync.remove("language");
+            document.getElementById("release").click();
         } else if (items.outer === undefined || items.inner === undefined) {
             loadPython();
+            document.getElementById("tutorial").click();
         } else {
             load(items.outer, items.inner);
         }
