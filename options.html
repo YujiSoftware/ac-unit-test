@@ -27,11 +27,77 @@
     </svg>
 
     <h1 class="my-3">AtCoder Unit Test</h1>
-    <div class="text-end">
+    <div class="d-flex justify-content-end">
+        <div class="align-self-center me-3">
+            <a href="#" id="tutorial" data-bs-toggle="modal" data-bs-target="#tutorialModal"
+                data-i18n="tutorial">使い方</a>
+        </div>
+        <div class="align-self-center me-3">
+            <a href="#" id="release" data-bs-toggle="modal" data-bs-target="#releaseModal"
+                data-i18n="releaseNote">リリースノート</a>
+        </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#templateModal"
             data-i18n="template">
             テンプレート
         </button>
+    </div>
+    <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tutorialModalLabel" data-i18n="tutorial">使い方</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" data-i18n="tutorialBody">
+                    <ol>
+                        <li data-i18n="tutorialStep1">
+                            <a href="https://atcoder.jp/contests/abc300/tasks/abc300_a" target="_blank">
+                                AtCoderの問題ページ</a>を開く
+                        </li>
+                        <li data-i18n="tutorialStep2">ツールバーの <img src="icon.png" width="16px" height="16px"> をクリック</li>
+                        <li data-i18n="tutorialStep3">エディタに貼り付ける</li>
+                    </ol>
+                    <img src="_locales/ja/browser.png" class="img-fluid img-thumbnail">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="releaseModal" tabindex="-1" aria-labelledby="releaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="releaseModalLabel" data-i18n="releaseNote">リリースノート</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" data-i18n="releaseNoteBody">
+                    <p>AtCoder Unit Test が新しくなりました！</p>
+                    <ul>
+                        <li>テストコードのテンプレートが変更できるようになりました。 </li>
+                        <li>テストのメソッド名が英語で生成されるようになりました。</li>
+                        <li>テストのコピー方法が変更になりました。<br>
+                            （<a href="https://atcoder.jp/contests/abc300/tasks/abc300_a" target="_blank">
+                                AtCoderの問題ページ</a>で、<img src="icon.png" width="16px" height="16px"> をクリック）
+                        </li>
+                    </ul>
+                    <img src="_locales/ja/browser.png" class="img-fluid">
+                    <hr>
+                    <ul>
+                        <li>Python
+                            <ul>
+                                <li>テストコードを含んだまま提出できるようになりました。
+                                    ( <a href="https://atcoder.jp/contests/abc341/submissions/50550863"
+                                        target="_blank">例</a> )
+                            </ul>
+                        </li>
+                        <li>Java, Kotlin
+                            <ul>
+                                <li>テストライブラリが JUnit5 に変更になりました。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="templateModal" tabindex="-1" aria-labelledby="templateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -70,7 +136,8 @@
         <div class="form-text">
             <ul>
                 <li data-i18n="write_method">
-                    テストメソッドを挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ METHOD }}</a>
+                    テストメソッドを挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ METHOD
+                        }}</a>
                     と記述してください。
                 </li>
             </ul>
