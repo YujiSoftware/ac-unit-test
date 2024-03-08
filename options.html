@@ -129,6 +129,25 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="initModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="initModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="initModalLabel" data-i18n="init">初期設定</h1>
+                </div>
+                <div class="modal-body" data-i18n="initBody">
+                    問題ページの入出力を読み取るために、許可が必要です。<br>
+                    （許可の対象は atcoder.jp のみです）
+                </div>
+                <div class="modal-footer">
+                    <button id="btnPermission" type="button" class="btn btn-warning" data-i18n="initButton">
+                        AtCoderのページ読み取りを許可
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="mb-3">
         <label for="outerCode" class="form-label" data-i18n="test_class_code">テストクラスのコード</label>

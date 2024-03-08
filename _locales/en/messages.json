@@ -26,6 +26,15 @@
   "warning_template": {
     "message": "Overwrite what you have already entered."
   },
+  "init": {
+    "message": "Initial setup"
+  },
+  "initBody": {
+    "message": "Permissions are required to read the input and output on the task page. <br>(Permission only applies to atcoder.jp)"
+  },
+  "initButton": {
+    "message": "Allow AtCoder page read permission"
+  },
   "test_class_code": {
     "message": "Test class"
   },

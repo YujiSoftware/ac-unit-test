@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener(details => {
+chrome.runtime.onInstalled.addListener(async details => {
     switch (details.reason) {
         case chrome.runtime.OnInstalledReason.INSTALL:
             chrome.runtime.openOptionsPage();
@@ -8,6 +8,12 @@ chrome.runtime.onInstalled.addListener(details => {
                 chrome.runtime.openOptionsPage();
             }
             break;
+    }
+
+    const manifest = chrome.runtime.getManifest();
+    const permissions = { "origins": manifest.host_permissions };
+    if (!await chrome.permissions.contains(permissions)) {
+        chrome.runtime.openOptionsPage();
     }
 });
 

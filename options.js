@@ -1,10 +1,10 @@
-function load(outer, inner) {
+async function load(outer, inner) {
     document.getElementById("outerCode").value = outer;
     document.getElementById("innerCode").value = inner;
-    save();
+    await save();
 }
 
-function loadPython() {
+async function loadPython() {
     const outer = `
 import sys
 from io import StringIO
@@ -35,10 +35,10 @@ if __name__ == "__main__":
         self.assertIO(input, expected)
 `.replace(/^\n/g, "");
 
-    load(outer, inner);
+    await load(outer, inner);
 }
 
-function loadJava() {
+async function loadJava() {
     const outer = `
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -75,10 +75,10 @@ public class MainTest {
     }
 `.replace(/^\n/g, "");
 
-    load(outer, inner);
+    await load(outer, inner);
 }
 
-function loadKotlin() {
+async function loadKotlin() {
     const outer = `
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -114,10 +114,10 @@ class MainTest {
     }
 `.replace(/^\n/g, "");
 
-    load(outer, inner);
+    await load(outer, inner);
 }
 
-function loadCSharp() {
+async function loadCSharp() {
     const outer = `
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -158,19 +158,19 @@ namespace AtCoder
         }
 `.replace(/^\n/g, "");
 
-    load(outer, inner);
+    await load(outer, inner);
 }
 
-function save() {
-    chrome.storage.sync.set({
+async function save() {
+    await chrome.storage.sync.set({
         outer: document.getElementById("outerCode").value,
         inner: document.getElementById("innerCode").value
     });
     console.debug("Saved.")
 }
 
-function copy(e) {
-    navigator.clipboard.writeText(e.target.textContent);
+async function copy(e) {
+    await navigator.clipboard.writeText(e.target.textContent);
     e.preventDefault();
 
     const tooltip = bootstrap.Tooltip.getOrCreateInstance(e.target);
@@ -183,33 +183,34 @@ async function initialize() {
         e.innerHTML = chrome.i18n.getMessage(e.dataset.i18n);
     });
 
-    chrome.storage.sync.get(null, function (items) {
-        if (items.language !== undefined) {
-            // upgrade from v1
-            switch (items.language) {
-                case "Java":
-                    loadJava();
-                    break;
-                case "Kotlin":
-                    loadKotlin();
-                    break;
-                case "CSharp":
-                    loadCSharp();
-                    break;
-                case "Python3":
-                    loadPython();
-                    break;
-            }
-
-            chrome.storage.sync.remove("language");
-            document.getElementById("release").click();
-        } else if (items.outer === undefined || items.inner === undefined) {
-            loadPython();
-            document.getElementById("tutorial").click();
-        } else {
-            load(items.outer, items.inner);
+    let updated = false;
+    let installed = false;
+    const items = await chrome.storage.sync.get(null)
+    if (items.language !== undefined) {
+        // upgrade from v1
+        switch (items.language) {
+            case "Java":
+                await loadJava();
+                break;
+            case "Kotlin":
+                await loadKotlin();
+                break;
+            case "CSharp":
+                await loadCSharp();
+                break;
+            case "Python3":
+                await loadPython();
+                break;
         }
-    });
+
+        await chrome.storage.sync.remove("language");
+        updated = true;
+    } else if (items.outer === undefined || items.inner === undefined) {
+        await loadPython();
+        installed = true;
+    } else {
+        await load(items.outer, items.inner);
+    }
 
     const setTheme = function () {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -228,6 +229,24 @@ async function initialize() {
     document.getElementById("outerCode").addEventListener("change", save);
     document.getElementById("innerCode").addEventListener("change", save);
     Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
+
+    const manifest = chrome.runtime.getManifest();
+    const permissions = { "origins": manifest.host_permissions };
+    if (!await chrome.permissions.contains(permissions)) {
+        const modal = new bootstrap.Modal('#initModal');
+        const button = document.getElementById("btnPermission");
+        button.addEventListener("click", async (e) => {
+            if (await chrome.permissions.request(permissions)) {
+                modal.hide();
+                document.getElementById("tutorial").click();
+            }
+        });
+        modal.show();
+    } else if (updated) {
+        document.getElementById("release").click();
+    } else if (installed) {
+        document.getElementById("tutorial").click();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initialize);

@@ -26,6 +26,15 @@
   "warning_template": {
     "message": "入力している内容を上書きします。"
   },
+  "init": {
+    "message": "初期設定"
+  },
+  "initBody": {
+    "message": "問題ページの入出力を読み取るために、許可が必要です。<br>（許可の対象は atcoder.jp のみです）"
+  },
+  "initButton": {
+    "message": "AtCoderのページ読み取りを許可"
+  },
   "test_class_code": {
     "message": "テストクラスのコード"
   },
