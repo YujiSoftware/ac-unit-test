@@ -5,7 +5,61 @@
   "extDescription": {
     "message": "AtCoder の問題ページから、ユニットテストを生成するアドオン"
   },
-  "language_label": {
-    "message": "生成するテストコードの言語："
+  "tutorial": {
+    "message": "使い方"
+  },
+  "tutorialBody": {
+    "message": "<ol><li data-i18n=\"tutorialStep1\"><a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">AtCoderの問題ページ</a>を開く</li><li data-i18n=\"tutorialStep2\">ツールバーの <img src=\"icon.png\" width=\"16px\" height=\"16px\"> をクリック</li><li data-i18n=\"tutorialStep3\">エディタに貼り付ける</li></ol><img src=\"_locales/ja/browser.png\" class=\"img-fluid img-thumbnail\">"
+  },
+  "releaseNote": {
+    "message": "リリースノート"
+  },
+  "releaseNoteBody": {
+    "message": "<p>AtCoder Unit Test が新しくなりました！</p><ul><li>テストコードのテンプレートが変更できるようになりました。 </li><li>テストのメソッド名が英語で生成されるようになりました。</li><li>テストのコピー方法が変更になりました。<br>（<a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">AtCoderの問題ページ</a>で、ツールバーの <img src=\"icon.png\" width=\"16px\" height=\"16px\"> をクリック）</li></ul><img src=\"_locales/ja/browser.png\" class=\"img-fluid img-thumbnail\"><hr><ul><li>Python<ul><li>テストコードを含んだまま提出できるようになりました。( <a href=\"https://atcoder.jp/contests/abc341/submissions/50550863\"target=\"_blank\">例</a> )</ul></li><li>Java, Kotlin<ul><li>テストライブラリが JUnit5 に変更になりました。</li></ul></li></ul>"
+  },
+  "template": {
+    "message": "テンプレート"
+  },
+  "select_template": {
+    "message": "テンプレートの選択"
+  },
+  "warning_template": {
+    "message": "入力している内容を上書きします。"
+  },
+  "init": {
+    "message": "初期設定"
+  },
+  "initBody": {
+    "message": "問題ページの入出力を読み取るために、許可が必要です。<br>（許可の対象は atcoder.jp のみです）"
+  },
+  "initButton": {
+    "message": "AtCoderのページ読み取りを許可"
+  },
+  "test_class_code": {
+    "message": "テストクラスのコード"
+  },
+  "write_method": {
+    "message": "テストメソッドを挿入する箇所に <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"コピーしました。\">{{ METHOD }}</a> と記述してください。"
+  },
+  "test_method_code": {
+    "message": "テストメソッドのコード"
+  },
+  "write_name": {
+    "message": "メソッド名を挿入する箇所に <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"コピーしました。\">{{ NAME }}</a> と記述してください。"
+  },
+  "write_input": {
+    "message": "入力例を挿入する箇所に <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"コピーしました。\">{{ INPUT }}</a> と記述してください。"
+  },
+  "write_output": {
+    "message": "出力例を挿入する箇所に <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"コピーしました。\">{{ OUTPUT }}</a> と記述してください。"
+  },
+  "prosessing": {
+    "message": "処理中..."
+  },
+  "open_options": {
+    "message": "設定を開く"
+  },
+  "copied": {
+    "message": "コピーしました。"
   }
 }

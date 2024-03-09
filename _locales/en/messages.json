@@ -5,7 +5,61 @@
   "extDescription": {
     "message": "Generate unit tests from AtCoder's problem page."
   },
-  "language_label": {
-    "message": "Language of generated test code:"
+  "tutorial": {
+    "message": "How to use"
+  },
+  "tutorialBody": {
+    "message": "<ol><li data-i18n=\"tutorialStep1\">Open <a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">AtCoder problem page</a></li><li data-i18n=\"tutorialStep2\">Click <img src=\"icon.png\" width=\"16px\" height=\"16px\"> on the toolbar</li><li data-i18n=\"tutorialStep3\">Paste into editor</li></ol><img src=\"_locales/en/browser.png\" class=\"img-fluid img-thumbnail\">"
+  },
+  "releaseNote": {
+    "message": "Release Note"
+  },
+  "releaseNoteBody": {
+    "message": "<p>AtCoder Unit Test is new! </p><ul><li>Test code templates can now be changed. </li><li>The method of copying tests has been changed. <br>(<a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">On the AtCoder problem page</a>, click <img src=\"icon.png\" width=\"16px\" height=\"16px\"> on the toolbar)</li></ul><img src=\"_locales/en/browser.png\" class=\"img-fluid img-thumbnail\"><hr><ul><li>Python<ul><li>You can now submit your work with the test code included.( <a href=\"https://atcoder.jp/contests/abc341/submissions/50550863\"target=\"_blank\">Example</a> )</ul></li><li>Java, Kotlin<ul><li>The test library has been changed to his JUnit5. </li></ul></li></ul>"
+  },
+  "template": {
+    "message": "Template"
+  },
+  "select_template": {
+    "message": "Select template"
+  },
+  "warning_template": {
+    "message": "Overwrite what you have already entered."
+  },
+  "init": {
+    "message": "Initial setup"
+  },
+  "initBody": {
+    "message": "Permissions are required to read the input and output on the task page. <br>(Permission only applies to atcoder.jp)"
+  },
+  "initButton": {
+    "message": "Allow AtCoder page read permission"
+  },
+  "test_class_code": {
+    "message": "Test class"
+  },
+  "write_method": {
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ METHOD }}</a> where you want to insert the test method."
+  },
+  "test_method_code": {
+    "message": "Test method"
+  },
+  "write_name": {
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ NAME }}</a> where you want to insert the test mthod name."
+  },
+  "write_input": {
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ INPUT }}</a> where you want to insert the input example."
+  },
+  "write_output": {
+    "message": "Write <a href=\"#\" class=\"mustache link-offset-3 font-monospace fw-bold\" data-bs-toggle=\"tooltip\" data-bs-trigger=\"manual\" data-bs-title=\"Copied.\">{{ OUTPUT }}</a> where you want to insert the output example"
+  },
+  "prosessing": {
+    "message": "Processing..."
+  },
+  "open_options": {
+    "message": "Open options"
+  },
+  "copied": {
+    "message": "Copied."
   }
 }

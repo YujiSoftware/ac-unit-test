@@ -1,22 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-    <title>AC Unit Test</title>
-    <meta charset="UTF-8">
+    <title>AtCoder Unit Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="options.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bi {
+            width: 1em;
+            height: 1em;
+            vertical-align: -.125em;
+            fill: currentcolor
+        }
+    </style>
 </head>
 
-<body>
-    <div style="font-size:large">
-        <span id="language_label"></span>
-        <select id="language">
-            <option value="Java">Java (JUnit)</option>
-            <option value="Kotlin">Kotlin (JUnit)</option>
-            <option value="CSharp">C# (MS Test)</option>
-            <option value="Python3">Python3 (unittest)</option>
-        </select>
+<body class="container-lg bg-body-tertiary">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+
+    <h1 class="my-3">AtCoder Unit Test</h1>
+    <div class="d-flex justify-content-end">
+        <div class="align-self-center me-3">
+            <a href="#" id="tutorial" data-bs-toggle="modal" data-bs-target="#tutorialModal"
+                data-i18n="tutorial">使い方</a>
+        </div>
+        <div class="align-self-center me-3">
+            <a href="#" id="release" data-bs-toggle="modal" data-bs-target="#releaseModal"
+                data-i18n="releaseNote">リリースノート</a>
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#templateModal"
+            data-i18n="template">
+            テンプレート
+        </button>
     </div>
-    <script src="options.js"></script>
+    <div class="modal fade" id="tutorialModal" tabindex="-1" aria-labelledby="tutorialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tutorialModalLabel" data-i18n="tutorial">使い方</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" data-i18n="tutorialBody">
+                    <ol>
+                        <li data-i18n="tutorialStep1">
+                            <a href="https://atcoder.jp/contests/abc300/tasks/abc300_a" target="_blank">
+                                AtCoderの問題ページ</a>を開く
+                        </li>
+                        <li data-i18n="tutorialStep2">ツールバーの <img src="icon.png" width="16px" height="16px"> をクリック</li>
+                        <li data-i18n="tutorialStep3">エディタに貼り付ける</li>
+                    </ol>
+                    <img src="_locales/ja/browser.png" class="img-fluid img-thumbnail">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="releaseModal" tabindex="-1" aria-labelledby="releaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="releaseModalLabel" data-i18n="releaseNote">リリースノート</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" data-i18n="releaseNoteBody">
+                    <p>AtCoder Unit Test が新しくなりました！</p>
+                    <ul>
+                        <li>テストコードのテンプレートが変更できるようになりました。 </li>
+                        <li>テストのメソッド名が英語で生成されるようになりました。</li>
+                        <li>テストのコピー方法が変更になりました。<br>
+                            （<a href="https://atcoder.jp/contests/abc300/tasks/abc300_a" target="_blank">
+                                AtCoderの問題ページ</a>で、<img src="icon.png" width="16px" height="16px"> をクリック）
+                        </li>
+                    </ul>
+                    <img src="_locales/ja/browser.png" class="img-fluid">
+                    <hr>
+                    <ul>
+                        <li>Python
+                            <ul>
+                                <li>テストコードを含んだまま提出できるようになりました。
+                                    ( <a href="https://atcoder.jp/contests/abc341/submissions/50550863"
+                                        target="_blank">例</a> )
+                            </ul>
+                        </li>
+                        <li>Java, Kotlin
+                            <ul>
+                                <li>テストライブラリが JUnit5 に変更になりました。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="templateModal" tabindex="-1" aria-labelledby="templateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="templateModalLabel" data-i18n="select_template">テンプレートの選択</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row row-gap-3 mx-3">
+                    <div class="alert alert-warning" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:">
+                            <use xlink:href="#exclamation-triangle-fill" />
+                        </svg>
+                        <span data-i18n="warning_template">入力している内容を上書きします。</span>
+                    </div>
+                    <button id="loadPython" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Python3 <small>(unittest)</small>
+                    </button>
+                    <button id="loadJava" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Java <small>(JUnit5)</small>
+                    </button>
+                    <button id="loadKotlin" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Kotlin <small>(JUnit5)</small>
+                    </button>
+                    <button id="loadCSharp" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        C# <small>(MS Test)</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="initModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="initModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="initModalLabel" data-i18n="init">初期設定</h1>
+                </div>
+                <div class="modal-body" data-i18n="initBody">
+                    問題ページの入出力を読み取るために、許可が必要です。<br>
+                    （許可の対象は atcoder.jp のみです）
+                </div>
+                <div class="modal-footer">
+                    <button id="btnPermission" type="button" class="btn btn-warning" data-i18n="initButton">
+                        AtCoderのページ読み取りを許可
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="outerCode" class="form-label" data-i18n="test_class_code">テストクラスのコード</label>
+        <textarea class="form-control font-monospace" id="outerCode" name="outerCode" rows="15"></textarea>
+        <div class="form-text">
+            <ul>
+                <li data-i18n="write_method">
+                    テストメソッドを挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ METHOD
+                        }}</a>
+                    と記述してください。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="innerCode" class="form-label" data-i18n="test_method_code">テストメソッドのコード</label>
+        <textarea class="form-control font-monospace" id="innerCode" name="innerCode" rows="10"></textarea>
+        <div class="form-text">
+            <ul>
+                <li data-i18n="write_name">
+                    メソッド名を挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ NAME }}</a>
+                    と記述してください。
+                </li>
+                <li data-i18n="write_input">
+                    入力例を挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ INPUT }}</a>
+                    と記述してください。
+                </li>
+                <li data-i18n="write_output">
+                    出力例を挿入する箇所に <a href="#" class="mustache link-offset-3 font-monospace fw-bold">{{ OUTPUT }}</a>
+                    と記述してください。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

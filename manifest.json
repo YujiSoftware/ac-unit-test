@@ -1,34 +1,33 @@
 {
   "name": "AtCoder Unit Test",
-  "version": "2.1.5",
-  "manifest_version": 2,
+  "version": "3.0.2",
+  "manifest_version": 3,
   "description": "__MSG_extDescription__",
   "default_locale": "en",
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "@acunittest"
     }
   },
   "permissions": [
-    "*://*.contest.atcoder.jp/tasks/*",
-    "*://atcoder.jp/contests/*/tasks/*",
-    "contextMenus",
     "clipboardWrite",
     "storage"
+  ],
+  "host_permissions": [
+    "*://atcoder.jp/contests/*/tasks/*"
   ],
   "icons": {
     "48": "icon.png"
   },
   "background": {
+    "service_worker": "background.js",
     "scripts": [
       "background.js"
-    ],
-    "persistent": false
+    ]
   },
   "content_scripts": [
     {
       "matches": [
-        "*://*.contest.atcoder.jp/tasks/*",
         "*://atcoder.jp/contests/*/tasks/*"
       ],
       "js": [
@@ -39,6 +38,9 @@
   ],
   "options_ui": {
     "page": "options.html",
-    "chrome_style": true
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "popup.html"
   }
 }
