@@ -210,8 +210,17 @@ async function initialize() {
     document.getElementById("innerCode").addEventListener("change", save);
     Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
 
+    const isMajorOrMinorUpdate = function (prev, current) {
+        // v1.2.3 => {major: 1, minor: 2, patch: 3}
+        const [prevMajor, prevMinor] = prev.split(",").map(v => parseInt(v));
+        const [major, minor] = current.split(",").map(v => parseInt(v));
+
+        return (prevMajor < major) || (prevMajor == major && prevMinor < minor)
+    }
+
     let updated = false;
     let installed = false;
+    const manifest = chrome.runtime.getManifest();
     const items = await chrome.storage.sync.get(null)
     if (items.language !== undefined) {
         // upgrade from v1
@@ -236,10 +245,13 @@ async function initialize() {
         await loadPython();
         installed = true;
     } else {
+        if (items.version === undefined || isMajorOrMinorUpdate(items.version, manifest.version)) {
+            await chrome.storage.sync.set({ "version": manifest.version });
+            updated = true;
+        }
         await load(items.outer, items.inner);
     }
 
-    const manifest = chrome.runtime.getManifest();
     const permissions = { "origins": manifest.host_permissions };
     if (!await chrome.permissions.contains(permissions)) {
         const modal = new bootstrap.Modal('#initModal');

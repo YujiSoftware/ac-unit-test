@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(async details => {
             chrome.runtime.openOptionsPage();
             break;
         case chrome.runtime.OnInstalledReason.UPDATE:
-            if (details.previousVersion.startsWith("2.")) {
+            if (details.previousVersion.startsWith("2.") || details.previousVersion.startsWith("3.0.")) {
                 chrome.runtime.openOptionsPage();
             }
             break;
