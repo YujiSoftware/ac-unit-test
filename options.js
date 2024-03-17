@@ -16,7 +16,7 @@ def resolve():
 
 class TestClass(unittest.TestCase):
 {{ METHOD }}
-    def assertIO(self, input, expected):
+    def judge(self, input, expected):
         stdout, stdin = sys.stdout, sys.stdin
         sys.stdout, sys.stdin = StringIO(), StringIO(input)
         resolve()
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     def test_{{ NAME }}(self):
         input = """{{ INPUT }}"""
         expected = """{{ OUTPUT }}"""
-        self.assertIO(input, expected)
+        self.judge(input, expected)
 `.replace(/^\n/g, "");
 
     await load(outer, inner);
@@ -53,7 +53,7 @@ import java.io.PrintStream;
 
 public class MainTest {
 {{ METHOD }}
-    private void assertIO(String input, String output) throws Exception {
+    private void judge(String input, String output) throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -75,7 +75,7 @@ public class MainTest {
         String output = """
 {{ OUTPUT }}""";
 
-        assertIO(input, output);
+        judge(input, output);
     }
 `.replace(/^\n/g, "");
 
@@ -92,7 +92,7 @@ import java.io.PrintStream
 
 class MainTest {
 {{ METHOD }}
-    private fun assertIO(input: String, output: String) {
+    private fun judge(input: String, output: String) {
         val sysIn = ByteArrayInputStream(input.toByteArray())
         System.setIn(sysIn)
 
@@ -114,7 +114,7 @@ class MainTest {
         val output = """
 {{ OUTPUT }}""".trimMargin()
 
-        assertIO(input, output)
+        judge(input, output)
     }
 `.replace(/^\n/g, "");
 
@@ -133,7 +133,7 @@ namespace AtCoder
     public class ProgramTest
     {
 {{ METHOD }}
-        private void AssertIO(string input, string output)
+        private void Judge(string input, string output)
         {
             StringReader reader = new StringReader(input);
             Console.SetIn(reader);
@@ -158,7 +158,7 @@ namespace AtCoder
             string output =
 @"{{ OUTPUT }}";
 
-            AssertIO(input, output);
+            Judge(input, output);
         }
 `.replace(/^\n/g, "");
 
