@@ -165,6 +165,55 @@ namespace AtCoder
     await load(outer, inner);
 }
 
+async function loadGo() {
+    const outer = `
+package main
+
+import (
+	"bytes"
+	"os"
+	"testing"
+)
+
+{{ METHOD }}
+func judge(t *testing.T, input, output string) {
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("os.Pipe(): %v", err)
+	}
+
+	if n, err := w.Write([]byte(input)); err != nil {
+		t.Fatalf("input is %v bytes, but only %v byte written", len(input), n)
+	}
+
+	stdin, stdout := os.Stdin, os.Stdout
+	os.Stdin, os.Stdout = r, w
+	main()
+	os.Stdin, os.Stdout = stdin, stdout
+
+	w.Close()
+	var buf bytes.Buffer
+	if _, err := buf.ReadFrom(r); err != nil {
+		t.Fatalf("can't read from reader: %v", err)
+	}
+	r.Close()
+
+	got := buf.String()
+	if got != output {
+		t.Errorf("got: %v, want: %v", got, output)
+	}
+}
+`.replace(/^\n/g, "");
+
+    const inner = `
+func Test_{{ NAME }}(t *testing.T) {
+	judge(t, \`{{ INPUT }}\`+"\\n", \`{{ OUTPUT }}\`+"\\n")
+}
+`.replace(/^\n/g, "");
+
+    await load(outer, inner);
+}
+
 async function save() {
     await chrome.storage.sync.set({
         outer: document.getElementById("outerCode").value,
@@ -206,6 +255,7 @@ async function initialize() {
     document.getElementById("loadJava").addEventListener("click", loadJava);
     document.getElementById("loadKotlin").addEventListener("click", loadKotlin);
     document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
+    document.getElementById("loadGo").addEventListener("click", loadGo);
     document.getElementById("outerCode").addEventListener("change", save);
     document.getElementById("innerCode").addEventListener("change", save);
     Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
