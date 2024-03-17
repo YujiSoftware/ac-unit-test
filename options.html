@@ -69,29 +69,19 @@
                     <h1 class="modal-title fs-5" id="releaseModalLabel" data-i18n="releaseNote">リリースノート</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" data-i18n="releaseNoteBody">
-                    <p>AtCoder Unit Test が新しくなりました！</p>
-                    <ul>
-                        <li>テストコードのテンプレートが変更できるようになりました。 </li>
-                        <li>テストのメソッド名が英語で生成されるようになりました。</li>
-                        <li>テストのコピー方法が変更になりました。<br>
-                            （<a href="https://atcoder.jp/contests/abc300/tasks/abc300_a" target="_blank">
-                                AtCoderの問題ページ</a>で、<img src="icon.png" width="16px" height="16px"> をクリック）
-                        </li>
-                    </ul>
-                    <img src="_locales/ja/browser.png" class="img-fluid">
-                    <hr>
+                <div class="modal-body">
                     <ul>
                         <li>Python
                             <ul>
-                                <li>テストコードを含んだまま提出できるようになりました。
-                                    ( <a href="https://atcoder.jp/contests/abc341/submissions/50550863"
-                                        target="_blank">例</a> )
-                            </ul>
-                        </li>
-                        <li>Java, Kotlin
-                            <ul>
-                                <li>テストライブラリが JUnit5 に変更になりました。</li>
+                                <li class="d-none" data-i18n-lang="ja">
+                                    <span class="font-monospace">`python3 Main.py`</span> で、テストが実行できるようになりました。<br>
+                                    <span class="text-warning-emphasis">再度、テンプレートから読み込むことで反映されます。</span>
+                                </li>
+                                <li class="d-none" data-i18n-lang="en">
+                                    Tests can now be run in <span class="font-monospace">`python3 Main.py`</span>.<br>
+                                    <span class="text-warning-emphasis">This will be reflected by reloading the
+                                        template.</span>
+                                </li>
                             </ul>
                         </li>
                     </ul>

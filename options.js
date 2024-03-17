@@ -7,6 +7,7 @@ async function load(outer, inner) {
 async function loadPython() {
     const outer = `
 import sys
+import os
 from io import StringIO
 import unittest
 
@@ -25,7 +26,10 @@ class TestClass(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
-    resolve()
+    if "ATCODER" in os.environ:
+        resolve()
+    else:
+        unittest.main(verbosity=2)
 `.replace(/^\n/g, "");
 
     const inner = `
@@ -182,6 +186,11 @@ async function initialize() {
     document.querySelectorAll('[data-i18n]').forEach(e => {
         e.innerHTML = chrome.i18n.getMessage(e.dataset.i18n);
     });
+    if (chrome.i18n.getUILanguage() == "ja") {
+        document.querySelectorAll('[data-i18n-lang="ja"]').forEach(e => e.classList.remove("d-none"))
+    } else {
+        document.querySelectorAll('[data-i18n-lang="en"]').forEach(e => e.classList.remove("d-none"))
+    }
 
     const setTheme = function () {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

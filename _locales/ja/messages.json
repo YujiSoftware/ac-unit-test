@@ -14,9 +14,6 @@
   "releaseNote": {
     "message": "リリースノート"
   },
-  "releaseNoteBody": {
-    "message": "<p>AtCoder Unit Test が新しくなりました！</p><ul><li>テストコードのテンプレートが変更できるようになりました。 </li><li>テストのメソッド名が英語で生成されるようになりました。</li><li>テストのコピー方法が変更になりました。<br>（<a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">AtCoderの問題ページ</a>で、ツールバーの <img src=\"icon.png\" width=\"16px\" height=\"16px\"> をクリック）</li></ul><img src=\"_locales/ja/browser.png\" class=\"img-fluid img-thumbnail\"><hr><ul><li>Python<ul><li>テストコードを含んだまま提出できるようになりました。( <a href=\"https://atcoder.jp/contests/abc341/submissions/50550863\"target=\"_blank\">例</a> )</ul></li><li>Java, Kotlin<ul><li>テストライブラリが JUnit5 に変更になりました。</li></ul></li></ul>"
-  },
   "template": {
     "message": "テンプレート"
   },

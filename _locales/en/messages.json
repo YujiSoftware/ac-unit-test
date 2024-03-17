@@ -14,9 +14,6 @@
   "releaseNote": {
     "message": "Release Note"
   },
-  "releaseNoteBody": {
-    "message": "<p>AtCoder Unit Test is new! </p><ul><li>Test code templates can now be changed. </li><li>The method of copying tests has been changed. <br>(<a href=\"https://atcoder.jp/contests/abc300/tasks/abc300_a\" target=\"_blank\">On the AtCoder problem page</a>, click <img src=\"icon.png\" width=\"16px\" height=\"16px\"> on the toolbar)</li></ul><img src=\"_locales/en/browser.png\" class=\"img-fluid img-thumbnail\"><hr><ul><li>Python<ul><li>You can now submit your work with the test code included.( <a href=\"https://atcoder.jp/contests/abc341/submissions/50550863\"target=\"_blank\">Example</a> )</ul></li><li>Java, Kotlin<ul><li>The test library has been changed to his JUnit5. </li></ul></li></ul>"
-  },
   "template": {
     "message": "Template"
   },
