@@ -183,6 +183,24 @@ async function initialize() {
         e.innerHTML = chrome.i18n.getMessage(e.dataset.i18n);
     });
 
+    const setTheme = function () {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark')
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light')
+        }
+    };
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
+    setTheme();
+
+    document.getElementById("loadPython").addEventListener("click", loadPython);
+    document.getElementById("loadJava").addEventListener("click", loadJava);
+    document.getElementById("loadKotlin").addEventListener("click", loadKotlin);
+    document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
+    document.getElementById("outerCode").addEventListener("change", save);
+    document.getElementById("innerCode").addEventListener("change", save);
+    Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
+
     let updated = false;
     let installed = false;
     const items = await chrome.storage.sync.get(null)
@@ -211,24 +229,6 @@ async function initialize() {
     } else {
         await load(items.outer, items.inner);
     }
-
-    const setTheme = function () {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark')
-        } else {
-            document.documentElement.setAttribute('data-bs-theme', 'light')
-        }
-    };
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
-    setTheme();
-
-    document.getElementById("loadPython").addEventListener("click", loadPython);
-    document.getElementById("loadJava").addEventListener("click", loadJava);
-    document.getElementById("loadKotlin").addEventListener("click", loadKotlin);
-    document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
-    document.getElementById("outerCode").addEventListener("change", save);
-    document.getElementById("innerCode").addEventListener("change", save);
-    Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
 
     const manifest = chrome.runtime.getManifest();
     const permissions = { "origins": manifest.host_permissions };
