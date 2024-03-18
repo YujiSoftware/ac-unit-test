@@ -214,6 +214,45 @@ func Test_{{ NAME }}(t *testing.T) {
     await load(outer, inner);
 }
 
+async function loadRuby() {
+    const outer = `
+def main()
+  
+end
+
+unless defined?(RSpec)
+  main()
+  exit
+end
+
+RSpec.describe do
+  ARGV.clear
+
+{{ METHOD }}
+  def judge(input, output)
+    $stdin = StringIO.new(input)
+    $stdout = StringIO.new
+
+    main()
+    actual = $stdout.string
+
+    $stdin = STDIN
+    $stdout = STDOUT
+
+    expect(actual).to eq output
+  end
+end
+`.replace(/^\n/g, "");
+
+    const inner = `
+  it "{{ NAME }}" do
+    judge('{{ INPUT }}' + "\\n", '{{ OUTPUT }}' + "\\n")
+  end
+`.replace(/^\n/g, "");
+
+    await load(outer, inner);
+}
+
 async function save() {
     await chrome.storage.sync.set({
         outer: document.getElementById("outerCode").value,
@@ -256,6 +295,7 @@ async function initialize() {
     document.getElementById("loadKotlin").addEventListener("click", loadKotlin);
     document.getElementById("loadCSharp").addEventListener("click", loadCSharp);
     document.getElementById("loadGo").addEventListener("click", loadGo);
+    document.getElementById("loadRuby").addEventListener("click", loadRuby);
     document.getElementById("outerCode").addEventListener("change", save);
     document.getElementById("innerCode").addEventListener("change", save);
     Array.from(document.getElementsByClassName("mustache")).forEach(e => e.addEventListener("click", copy));
